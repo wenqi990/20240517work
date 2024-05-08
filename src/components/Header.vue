@@ -10,9 +10,11 @@ export default{
 </script>
 
 <template>
+
     <div class="headerArea">
     <RouterLink class="routerItem" to="/">Home</RouterLink>
     <RouterLink class="routerItem" to="/hotel">Hotel</RouterLink>
+
     </div>
 
   
