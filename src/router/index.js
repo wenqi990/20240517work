@@ -8,7 +8,12 @@ const router = createRouter({
       path: '/',
       name: 'home',
       component: HomeView
-    }
+    },
+    {
+      path: '/hotel',
+      name: 'hotel',
+      component:() =>import("../views/住宿/hotel.vue"),
+    },
     
   ]
 })
