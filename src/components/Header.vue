@@ -12,7 +12,10 @@ export default{
 <template>
     <div class="headerArea">
     <RouterLink class="routerItem" to="/">Home</RouterLink>
+    <RouterLink class="routerItem" to="/hotel">Hotel</RouterLink>
     </div>
+
+  
 </template>
 
 <style scoped lang="scss">
