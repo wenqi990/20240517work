@@ -14,6 +14,11 @@ const router = createRouter({
       name: 'hotel',
       component:() =>import("../views/住宿/hotel.vue"),
     },
+    {
+      path: '/Attractions',
+      name: 'attractions',
+      component:() =>import("../views/景點/Attractions.vue"),
+    }
     
   ]
 })
