@@ -21,7 +21,7 @@ const router = createRouter({
     },
     {
       path: '/TainanFood',
-      name: 'TainanFood',
+      name: 'tainanFood',
       component:() =>import("../views/グルメ/TainanFood.vue"),
     }
     
