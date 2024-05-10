@@ -15,7 +15,7 @@ export default{
     <RouterLink class="routerItem" to="/">Home</RouterLink>
     <RouterLink class="routerItem" to="/hotel">Hotel</RouterLink>
     <RouterLink class="routerItem" to="/Attractions">Attractions</RouterLink>
-    <RouterLink class="routerItem" to="/TainanFood">Attractions</RouterLink>
+    <RouterLink class="routerItem" to="/TainanFood">Food</RouterLink>
 　　
     </div>
 
