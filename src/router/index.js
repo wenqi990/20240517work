@@ -18,6 +18,11 @@ const router = createRouter({
       path: '/Attractions',
       name: 'attractions',
       component:() =>import("../views/景點/Attractions.vue"),
+    },
+    {
+      path: '/TainanFood',
+      name: 'TainanFood',
+      component:() =>import("../views/グルメ/TainanFood.vue"),
     }
     
   ]
