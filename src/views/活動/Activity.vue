@@ -2,9 +2,9 @@
 import { onMounted, ref } from "vue";
 
 const pictures = ref([
-  { image: "/src/views/圖/20191007141522_44.jpg", link: "https://www.youtube.com/watch?v=6RBYmR5GesQ&ab_channel=%E6%BB%BE%E7%9F%B3%E5%94%B1%E7%89%87ROCKRECORDS", alt: "Image 1" },
-  { image: "/src/views/圖/20211021085456147.webp", link: "https://www.youtube.com/watch?v=NjdqQyC7Rkc&ab_channel=MilkMilkxi", alt: "Image 2" },
-  { image: "/src/views/圖/台北101觀景台門票.jpg", link: "https://www.youtube.com/shorts/n9B-ctjfob4", alt: "Image 3" }
+  { image: "/public/imags/活動/1.jpg", link: "https://www.youtube.com/watch?v=6RBYmR5GesQ&ab_channel=%E6%BB%BE%E7%9F%B3%E5%94%B1%E7%89%87ROCKRECORDS", alt: "Image 1" },
+  { image: "/public/imags/活動/2.webp", link: "https://www.youtube.com/watch?v=NjdqQyC7Rkc&ab_channel=MilkMilkxi", alt: "Image 2" },
+  { image: "/public/imags/活動/3.jpg", link: "https://www.youtube.com/shorts/n9B-ctjfob4", alt: "Image 3" }
 ]);
 const selectedImage = ref("");
 const selectedLink = ref("");
@@ -20,12 +20,12 @@ const setRandomImage = () => {
 onMounted(setRandomImage);
 
 const images = ref([
-  { image: "/src/views/圖/白河蓮花季系列活動3.jpg", alt: "Image 1" },
-  { image: "/src/views/圖/臺南香科年-魚頭君追香去2.jpg", alt: "Image 2" },
-  { image: "/src/views/圖/臺南香科年3.jpg", alt: "Image 3" } ,
-  { image: "/src/views/圖/發現玉井之美全國攝影比賽3.jpg", alt: "Image 1" },
-  { image: "/src/views/圖/臺南市國際龍舟錦標賽.webp", alt: "Image 2" },
-  { image: "/src/views/圖/Pokémon GO「官方路線」在台南.jpg", alt: "Image 3" }
+  { image: "/public/imags/活動/4.jpg", alt: "Image 1" },
+  { image: "/public/imags/活動/5.jpg", alt: "Image 2" },
+  { image: "/public/imags/活動/6.jpg", alt: "Image 3" } ,
+  { image: "/public/imags/活動/7.jpg", alt: "Image 1" },
+  { image: "/public/imags/活動/8.webp", alt: "Image 2" },
+  { image: "/public/imags/活動/9.jpg", alt: "Image 3" }
 ]);
 
 let events = ref(null);
@@ -34,11 +34,10 @@ let searchResults = ref([]);
 let showNoResults = ref(false);
 
 onMounted(async () => {
-  let response = await fetch("event_zh-tw (1).json");
+  let response = await fetch("event_zh-tw.json");
   let data = await response.json();
   events.value = data;
 });
-
 
 const searchEvent = () => {
   searchResults.value = events.value.filter(event =>
@@ -58,25 +57,21 @@ const handleBackspaceKey = (event) => {
   }
 };
 
-
 </script>
 
-
-
 <template>
-
   <div class="header">
     <img src="/123.jpg" alt="" width="100%" height="50%">
   </div>
 
   <div class="container">
     <div class="inputColumn">
-   
+
       <input type="text" v-model="searchKeyword" placeholder="輸入標題關鍵字" @keyup.enter="handleEnterKey" @keyup="handleBackspaceKey">
         
       <div class="search-results">
         <article v-if="searchResults.length > 0">
-        
+         
           <div class="card1" v-for="(result, index) in searchResults" :key="index">
             <img :src="result.image" class="card-img-top" :alt="result.alt">
             <div class="card-body">
@@ -86,7 +81,7 @@ const handleBackspaceKey = (event) => {
             </div>
           </div>
         </article>
-     
+       
         <p v-show="showNoResults">沒有符合搜尋條件的結果。</p> 
       </div>
     </div>
@@ -95,11 +90,11 @@ const handleBackspaceKey = (event) => {
     <section class="section">
       <h2>活動資訊</h2>
       <div class="container2">
-      
+        
         <div class="card__container">
-       
+        
           <div class="card__article" v-for="(item, index) in events" :key="index">
-          
+            
             <img :src="images[index % images.length].image" class="card__img" :alt="images[index % images.length].alt">
             <div class="card__data">
               <span class="card__description">{{ item.post_time }}</span>
