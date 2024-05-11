@@ -23,6 +23,11 @@ const router = createRouter({
       path: '/TainanFood',
       name: 'tainanFood',
       component:() =>import("../views/グルメ/TainanFood.vue"),
+    },
+    {
+      path: '/Activity',
+      name: 'Activity',
+      component: () => import('../views/活動/Activity.vue'),
     }
     
   ]
