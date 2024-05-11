@@ -34,7 +34,7 @@ let searchResults = ref([]);
 let showNoResults = ref(false);
 
 onMounted(async () => {
-  let response = await fetch("event_zh-tw.json");
+  let response = await fetch("/public/檔案/event_zh-tw.json");
   let data = await response.json();
   events.value = data;
 });
@@ -61,7 +61,7 @@ const handleBackspaceKey = (event) => {
 
 <template>
   <div class="header">
-    <img src="/123.jpg" alt="" width="100%" height="50%">
+    <img src="/public/imags/活動/123.jpg" alt="" width="100%" height="50%">
   </div>
 
   <div class="container">
