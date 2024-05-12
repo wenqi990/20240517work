@@ -6,6 +6,7 @@ const pictures = ref([
   { image: "/public/imags/活動/2.webp", link: "https://www.youtube.com/watch?v=NjdqQyC7Rkc&ab_channel=MilkMilkxi", alt: "Image 2" },
   { image: "/public/imags/活動/3.jpg", link: "https://www.youtube.com/shorts/n9B-ctjfob4", alt: "Image 3" }
 ]);
+
 const selectedImage = ref("");
 const selectedLink = ref("");
 const selectedAlt = ref("");
@@ -71,7 +72,7 @@ const handleBackspaceKey = (event) => {
         
       <div class="search-results">
         <article v-if="searchResults.length > 0">
-         
+        
           <div class="card1" v-for="(result, index) in searchResults" :key="index">
             <img :src="result.image" class="card-img-top" :alt="result.alt">
             <div class="card-body">
@@ -81,7 +82,7 @@ const handleBackspaceKey = (event) => {
             </div>
           </div>
         </article>
-       
+      
         <p v-show="showNoResults">沒有符合搜尋條件的結果。</p> 
       </div>
     </div>
@@ -151,13 +152,13 @@ const handleBackspaceKey = (event) => {
   width: 30%;
   input {
     margin-top: 2rem;
-    margin-left: -3.5rem;
+    margin-left: -10rem;
   }
 }
 
 .search-results {
   margin-top: 1rem;
-  margin-left: -2rem;
+  margin-left: -8.5rem;
   
 
 }
@@ -165,7 +166,7 @@ const handleBackspaceKey = (event) => {
 
   .card-body{
     position: relative;
-    width: 11rem;
+    width: 181px;
     margin-left: -22px;
     margin-top: -15px;
     padding: 18px 2px;
@@ -188,11 +189,6 @@ body {
   background-color: rgb(242, 242, 242);
 }
 
-  hr{
-    margin: 0 auto;
-    width: 1200px;
-  }
-
   h2{
     text-align: center;
     margin: 2rem 0;
@@ -212,6 +208,7 @@ img {
 .section{
 position: relative;
 margin-block: 45px 0;
+margin-inline: 90px 0;
 margin-bottom: 20px;
 
 .container2 {
@@ -224,6 +221,8 @@ margin-bottom: 20px;
     display: flex;
     gap: 3.5rem;
     flex-wrap: wrap;
+    width: 1100px;
+    /* grid-template-columns: 200px 200px 200px; */
     
   .card__article {
     position: relative;
@@ -345,7 +344,7 @@ margin-bottom: 20px;
   
   position: absolute;
   transform: translateY(-550px);
-  left: 45px;
+  left: 38px;
   z-index: 1;
   /* width: 120px;
   height: 600px; */
