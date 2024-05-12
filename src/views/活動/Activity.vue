@@ -7,6 +7,17 @@ const pictures = ref([
   { image: "/public/imags/活動/3.jpg", link: "https://www.youtube.com/shorts/n9B-ctjfob4", alt: "Image 3" }
 ]);
 
+const links = ref([
+
+{ link: "https://www.tainan.gov.tw/News_Content.aspx?n=13370&s=8636970"},
+{ link: "https://www.twtainan.net/zh-tw/event/activitydetail/6447"},
+{ link: "https://www.twtainan.net/zh-tw/event/activitydetail/6435"},
+{ link: "https://www.twtainan.net/zh-tw/event/activitydetail/6428"} ,
+{ link: "https://dragonboat.tainan.gov.tw/"},
+{ link: "https://www.twtainan.net/zh-tw/event/activitydetail/6348"},
+
+]);
+
 const selectedImage = ref("");
 const selectedLink = ref("");
 const selectedAlt = ref("");
@@ -78,7 +89,7 @@ const handleBackspaceKey = (event) => {
             <div class="card-body">
               <h5 class="card-title">{{ result.title }}</h5>
               <p class="card-text">{{ result.post_time }}</p>
-              <a href="#" class="btn btn-outline-info">Go somewhere</a>
+              <a :href="links[index].link" class="btn btn-outline-info">Go somewhere</a>
             </div>
           </div>
         </article>
@@ -104,7 +115,7 @@ const handleBackspaceKey = (event) => {
             <div class="card__data">
               <span class="card__description">{{ item.post_time }}</span>
               <h2 class="card__title">{{ item.title }}</h2>
-              <a href="#" class="card__button">Read More</a>
+              <a :href="links[index].link" class="card__button">Read More</a>
             </div>
           </div>
         </div>
