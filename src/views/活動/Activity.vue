@@ -24,9 +24,9 @@ const images = ref([
   { image: "/public/imags/活動/4.jpg", alt: "Image 1" },
   { image: "/public/imags/活動/5.jpg", alt: "Image 2" },
   { image: "/public/imags/活動/6.jpg", alt: "Image 3" } ,
-  { image: "/public/imags/活動/7.jpg", alt: "Image 1" },
-  { image: "/public/imags/活動/8.webp", alt: "Image 2" },
-  { image: "/public/imags/活動/9.jpg", alt: "Image 3" }
+  { image: "/public/imags/活動/7.jpg", alt: "Image 4" },
+  { image: "/public/imags/活動/8.webp", alt: "Image 5" },
+  { image: "/public/imags/活動/9.jpg", alt: "Image 6" }
 ]);
 
 let events = ref(null);
