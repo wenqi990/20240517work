@@ -68,7 +68,7 @@ const handleBackspaceKey = (event) => {
   <div class="container">
     <div class="inputColumn">
 
-      <input type="text" v-model="searchKeyword" placeholder="輸入標題關鍵字" @keyup.enter="handleEnterKey" @keyup="handleBackspaceKey">
+      <input  type="text" v-model="searchKeyword" placeholder="輸入標題關鍵字" @keyup.enter="handleEnterKey" @keyup="handleBackspaceKey">
         
       <div class="search-results">
         <article v-if="searchResults.length > 0">
@@ -89,9 +89,13 @@ const handleBackspaceKey = (event) => {
 
   
     <section class="section">
-      <h2>活動資訊</h2>
+
+      <a :href="selectedLink" target="_blank" class="random-image-container">
+    <img class="ad_img" :src="selectedImage" :alt="selectedAlt">
+  </a>
+      
       <div class="container2">
-        
+        <h2>活動資訊</h2>
         <div class="card__container">
         
           <div class="card__article" v-for="(item, index) in events" :key="index">
@@ -108,9 +112,7 @@ const handleBackspaceKey = (event) => {
     </section>
   </div>
 
-  <a :href="selectedLink" target="_blank" class="random-image-container">
-    <img class="ad_img" :src="selectedImage" :alt="selectedAlt">
-  </a>
+
 
 </template>
 
@@ -150,9 +152,17 @@ const handleBackspaceKey = (event) => {
 
 .inputColumn {
   width: 30%;
+  
   input {
     margin-top: 2rem;
     margin-left: -10rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 0 10px;
+    font-size: 1rem;
+    &:focus{
+      outline: 2px solid #9fd1fa;
+}
   }
 }
 
@@ -166,8 +176,8 @@ const handleBackspaceKey = (event) => {
 
   .card-body{
     position: relative;
-    width: 181px;
-    margin-left: -22px;
+    width: 202px;
+    margin-left: -24px;
     margin-top: -15px;
     padding: 18px 2px;
     background-color: rgb(255, 255, 255);
@@ -189,12 +199,7 @@ body {
   background-color: rgb(242, 242, 242);
 }
 
-  h2{
-    text-align: center;
-    margin: 2rem 0;
-    font-weight: bold;
-    
-  }
+
 
 img {
   display: block;
@@ -209,14 +214,37 @@ img {
 position: relative;
 margin-block: 45px 0;
 margin-inline: 90px 0;
-margin-bottom: 20px;
-
+margin-bottom: 100px;
+.random-image-container {
+  
+  position: absolute;
+  /* transform: translateY(-550px); */
+  left: 45px;
+  z-index: 1;
+  /* width: 120px;
+  height: 600px; */
+  margin-left: -336.5px;
+  display: block;
+  margin-top: 50px;
+}
+.ad_img {
+  
+  display: inline-block;
+  width: 200px;
+  height: 600px;
+  object-fit: cover;
+}
 .container2 {
-    /* flex-wrap: wrap; */
-    /* display: grid; 
-    place-items: center;  */
-    /* grid-template-columns: 200px 200px 200px; */
+    flex-wrap: wrap; 
+    display: grid; 
+    place-items: center;
     
+    h2{
+    text-align: center;
+    margin: 2rem 0;
+    font-weight: bold;
+    
+  }
   .card__container {
     display: flex;
     gap: 3.5rem;
@@ -340,20 +368,4 @@ margin-bottom: 20px;
   }
 }
 
-.random-image-container {
-  
-  position: absolute;
-  transform: translateY(-550px);
-  left: 38px;
-  z-index: 1;
-  /* width: 120px;
-  height: 600px; */
-}
-.ad_img {
-  
-  display: inline-block;
-  width: 200px;
-  height: 600px;
-  object-fit: cover;
-}
 </style>
