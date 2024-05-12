@@ -102,7 +102,7 @@ const handleBackspaceKey = (event) => {
     <section class="section">
 
       <a :href="selectedLink" target="_blank" class="random-image-container">
-    <img class="ad_img" :src="selectedImage" :alt="selectedAlt" title="無法關閉的廣告廣告"/>
+    <img class="ad_img" :src="selectedImage" :alt="selectedAlt" title="無法關閉的廣告"/>
   </a>
       
       <div class="container2">
