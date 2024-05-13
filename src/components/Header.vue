@@ -21,6 +21,10 @@ export default{
     <RouterLink class="routerItem" to="/Activity">Activity</RouterLink>
     <!-- <RouterLink class="routerItem" to="/Footer">Footer</RouterLink> -->
     <!-- <RouterLink class="routerItem" to="/Map">Map</RouterLink> -->
+    <div class="search">
+        <input type="text" placeholder="搜尋">
+        <button type="button" class="btn btn-dark">搜尋</button>
+      </div>
     </div>
 
 
@@ -59,5 +63,31 @@ img{
   margin-right: 20px;
 }
 
+.search{
+margin-left: 100px;
+margin-right: -300px;
+
+input{
+  width: 200px;
+  height: 30px;
+  padding: 0 10px;
+  border-radius: 10px;
+  border: none;
+  margin-right: 10px;
+  &:focus{
+      outline: 2px solid #9fd1fa;
+}
+}
+button{
+  width: 50px;
+  height: 33px;
+  border-radius: 10px;
+  margin-bottom: 5px;
+  // border: none;
+//   &:focus{
+//       outline: 2px solid #9fd1fa;
+// }
+}
+}
 }
 </style>
