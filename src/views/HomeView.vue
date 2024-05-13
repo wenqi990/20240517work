@@ -39,8 +39,8 @@ import Footer from '../views/Footer.vue'
 
   <div class="second area">
         <div class="secondText">
-            <h1>讓我們一起嗨放美食</h1>
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis nobis a odio ad tempora officia nam ullam incidunt ipsam nisi vel, doloremque autem minus dolorum.</p>
+            <h5>讓我們一起嗨放美食</h5>
+            <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis nobis a odio ad tempora officia nam ullam incidunt ipsam nisi vel, doloremque autem minus dolorum.</p>
             <div>
     <!-- //bootstrap 效果 -->
     <button class="btn btn-primary">所有美食</button> 
@@ -172,6 +172,7 @@ import Footer from '../views/Footer.vue'
 </template>
 
 <style scoped lang="scss">
+
 .icon {
   display: flex;
   background-color: #ffffff;
@@ -224,18 +225,24 @@ h4 {
     background-color: #ffffff;
     // cursor:url(./素材/ae7a5-03aq0-001.ico),auto ;
 
-    .secondText{
+    .secondText {
         width: 40%;
         height: 100%;
         padding-top: 5%;
         padding-left: 3%;
         color: black;
-
+        
         h1{
             padding:5% 3%;
             font-size: 7dvh;
+            
+         
         }
+
+    
     }
+
+
 
     img{
         padding-right: 5%;
