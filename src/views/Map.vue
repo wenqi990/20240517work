@@ -27,7 +27,7 @@
 
 <script setup>
 import { ref, onMounted } from 'vue';
-
+// // 地圖上各區域的路徑資訊
 const pathsData = [
     {
         id: "_新營區",
@@ -215,6 +215,9 @@ const pathsData = [
         d: "M62.26,343.03l.66,4.26-.66,4.67,12.21,7.29,2.38.66,4.59,4.26,8.28,4.34,10.33,10.9,3.93,1.97,6.97,6.47,3.48,3.24h2.46l3.31-2.65,5.63-4.3,5.3-1.32,2.98.33,4.64.99,2.32-1.66,3.97-1.32,1.32-1.99,5.63-3.64,7.95-4.64,7.95-1.99,4.3.33,3.64-1.32,2.98-2.65,4.3-8.94,5.3-6.95,6.95-4.3,7.29-5.3.33-5.63-7.62-3.31-5.96-2.32-2.65-.33-3.64-1.66h-6.29l-6.29,2.32-4.97-3.31-1.66-5.3-4.97-.33-3.64-.99-5.63-.33-4.97-4.64-.03-2.98-17.38-1.47-13.11,2.81-19.2,2.81-12.18,7.49-9.37,6.56-10.77,14.52"
     }
 ];
+// 使用 ref 創建可響應式的數據
+// ref(null) 代表在組件加載之前我們還沒有從後端獲取到數據。一旦數據加載完成，我們會將其設置為實際的景點數據對象。
+// ref(0) 代表在頁面加載時還沒有滑鼠懸停在任何區域，因此景點數量為0。
 const attractions = ref(null);
 const hoveredAttractionsCount = ref(0);
 
@@ -224,9 +227,14 @@ const hoveredHotelsCount = ref(0);
 const shops = ref(null);
 const hoveredShopsCount = ref(0);
 
-const hoveredDistrict = ref('');
+const hoveredDistrict = ref(''); // ''也可以設置為null
 
-async function fetchData(url, targetRef) {
+
+// 負責從指定的 URL 中獲取數據並將其賦值給目標參考（targetRef）。如果刪除了這段程式碼，則應用將無法獲取需要的數據。
+// 定義異步函式（async function）。它有兩個參數：
+// 1. url：代表要從中獲取資料的 API 端點的 URL。
+// 2. targetRef：代表一個 Vue ref 物件，用於存儲從 API 獲取的資料。
+async function fetchData(url, targetRef) { 
     try {
         const response = await fetch(url);
         const data = await response.json();
@@ -237,7 +245,9 @@ async function fetchData(url, targetRef) {
     }
 }
 
+// 處理滑鼠懸停事件
 function handleMouseOver(path) {
+    // 獲取滑鼠懸停區域的景點、旅宿和商家數量
     const attractionsCount = attractions.value.filter(attraction => attraction.district === path.name).length;
     hoveredAttractionsCount.value = attractionsCount;
 
@@ -250,7 +260,9 @@ function handleMouseOver(path) {
     hoveredDistrict.value = path.name;
 }
 
+// 處理滑鼠離開事件
 function handleMouseLeave() {
+    // 將滑鼠懸停的數量歸零
     hoveredAttractionsCount.value = 0;
     hoveredHotelsCount.value = 0;
     hoveredShopsCount.value = 0;
