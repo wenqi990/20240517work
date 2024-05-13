@@ -17,6 +17,7 @@ export default{
     <RouterLink class="routerItem" to="/Attractions">Attractions</RouterLink>
     <RouterLink class="routerItem" to="/TainanFood">Food</RouterLink>
     <RouterLink class="routerItem" to="/Activity">Activity</RouterLink>
+    <!-- <RouterLink class="routerItem" to="/Map">Map</RouterLink> -->
 　　
     </div>
 
