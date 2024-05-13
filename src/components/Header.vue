@@ -10,8 +10,9 @@ export default{
 </script>
 
 <template>
-<img src="public/imags/活動/location.png" alt="">
+ 
     <div class="headerArea">
+      <img src="/public/imags/活動/location.png" alt="" width="50px">
     <RouterLink class="routerItem" to="/">Home</RouterLink>
     <RouterLink class="routerItem" to="/hotel">Hotel</RouterLink>
     <RouterLink class="routerItem" to="/Attractions">Attractions</RouterLink>
@@ -42,14 +43,18 @@ export default{
   .routerItem{
     color:azure;
     font-size:24px;
-    // margin: 0 1%;
     text-decoration: none;
     padding: 20px;
+    margin-right: 20px;
     
     &:hover{
       color: darkgoldenrod;
       background-color: azure;
   }
+}
+
+img{
+  margin-right: 20px;
 }
 
 }
