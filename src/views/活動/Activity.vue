@@ -1,5 +1,6 @@
 <script setup>
 import { onMounted, ref } from "vue";
+import Footer from '../../views/Footer.vue';
 
 const pictures = ref([
   { image: "/public/imags/活動/1.jpg", link: "https://www.youtube.com/watch?v=6RBYmR5GesQ&ab_channel=%E6%BB%BE%E7%9F%B3%E5%94%B1%E7%89%87ROCKRECORDS", alt: "Image 1" },
@@ -127,7 +128,7 @@ const handleBackspaceKey = (event) => {
     </section>
   </div>
 
-
+<Footer></Footer>
 
 </template>
 

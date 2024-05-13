@@ -1,5 +1,6 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
+
 // options API 寫法
 export default{
     // components => 放能在 <template> 中當標籤使用的元件或方法
@@ -17,11 +18,11 @@ export default{
     <RouterLink class="routerItem" to="/Attractions">Attractions</RouterLink>
     <RouterLink class="routerItem" to="/TainanFood">Food</RouterLink>
     <RouterLink class="routerItem" to="/Activity">Activity</RouterLink>
+    <!-- <RouterLink class="routerItem" to="/Footer">Footer</RouterLink> -->
     <!-- <RouterLink class="routerItem" to="/Map">Map</RouterLink> -->
-　　
     </div>
 
-  
+
 </template>
 
 <style scoped lang="scss">
