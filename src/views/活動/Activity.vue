@@ -7,17 +7,6 @@ const pictures = ref([
   { image: "/public/imags/活動/3.jpg", link: "https://www.youtube.com/shorts/n9B-ctjfob4", alt: "Image 3" }
 ]);
 
-const links = ref([
-
-{ link: "https://www.tainan.gov.tw/News_Content.aspx?n=13370&s=8636970"},
-{ link: "https://www.twtainan.net/zh-tw/event/activitydetail/6447"},
-{ link: "https://www.twtainan.net/zh-tw/event/activitydetail/6435"},
-{ link: "https://www.twtainan.net/zh-tw/event/activitydetail/6428"} ,
-{ link: "https://dragonboat.tainan.gov.tw/"},
-{ link: "https://www.twtainan.net/zh-tw/event/activitydetail/6348"},
-
-]);
-
 const selectedImage = ref("");
 const selectedLink = ref("");
 const selectedAlt = ref("");
@@ -29,6 +18,19 @@ const setRandomImage = () => {
   selectedAlt.value = pictures.value[randomIndex].alt;
 };
 
+
+
+const links = ref([
+
+{ link: "https://www.tainan.gov.tw/News_Content.aspx?n=13370&s=8636970"},
+{ link: "https://www.twtainan.net/zh-tw/event/activitydetail/6447"},
+{ link: "https://www.twtainan.net/zh-tw/event/activitydetail/6435"},
+{ link: "https://www.twtainan.net/zh-tw/event/activitydetail/6428"} ,
+{ link: "https://dragonboat.tainan.gov.tw/"},
+{ link: "https://www.twtainan.net/zh-tw/event/activitydetail/6348"},
+
+]);
+
 onMounted(setRandomImage);
 
 const images = ref([
@@ -39,6 +41,8 @@ const images = ref([
   { image: "/public/imags/活動/8.webp", alt: "Image 5" },
   { image: "/public/imags/活動/9.jpg", alt: "Image 6" }
 ]);
+
+
 
 let events = ref(null);
 let searchKeyword = ref("");
