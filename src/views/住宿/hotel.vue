@@ -133,9 +133,9 @@ export default {
     </div>
 
     <div class="pagination">
-        <button @click="prevPage" :disabled="currentPage === 1">Previous</button>
+        <button @click="prevPage" :disabled="currentPage === 1">上一頁</button>
         <span>{{ currentPage }}</span>
-        <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
+        <button @click="nextPage" :disabled="currentPage === totalPages">下一頁</button>
     </div>
 
     <div class="footerArea"></div>
