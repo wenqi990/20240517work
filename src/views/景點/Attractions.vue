@@ -1,94 +1,809 @@
 <script>
-export default {
-  data() {
-    return {
-      // 定義組件的資料
-      selectedDistrict: '', // 選擇的地區
-      selectedAddress: '', // 選擇的地址
-      selectedName: '', // 選擇的名稱
-      districts: [], // 所有地區的列表
-      addresses: [], // 所有地址的列表
-      names: [], // 所有名稱的列表
-      tainanArr: [], // 從服務器獲取的台南景點資料
-    };
-  },
-  mounted() { 
-    // 在組件被加載後執行的方法
-    this.fetchHotelData(); // 加載台南景點資料
-  },
-  methods: { 
-    fetchHotelData() {  
-      // 從服務器獲取台南景點資料的方法
-      fetch('./public/檔案/attractions_zh-tw.json') // 發送獲取資料的請求
-        .then((res) => res.json()) // 解析服務器的回應為 JSON 格式
-        .then((data) => { 
-          if (data && Array.isArray(data)) { // 確認獲取的資料是一個陣列
-            this.tainanArr = data; // 將獲取的資料存儲到組件的資料中
-            this.districts = ['--請選擇--', ...data.map(item => item.district)];  // 添加預設值到地區的下拉式選單中
-            this.updateDistrictData(this.selectedDistrict); // 更新地區相關的資料
-          } else {
-            console.error("Data is not defined or is not an array."); // 如果獲取的資料不是陣列，輸出錯誤信息
-          }
-        })
-        .catch((error) => {
-          console.error("Error fetching hotel data:", error); // 如果獲取資料失敗，輸出錯誤信息
-        });
-    },
-    updateDistrictData(district) {
-      // 更新地區相關資料的方法
-      const filteredData = this.tainanArr.filter(item => item.district === district); // 從台南景點資料中篩選出與選擇的地區相關的資料
-      this.addresses = filteredData.map(item => item.address); // 更新地址列表
-      this.names = filteredData.map(item => item.name); // 更新名稱列表
 
-      // 去除重複的地區
-      const uniqueDistricts = Array.from(new Set(this.districts)); // 使用 Set 將地區列表去重
-      this.districts = uniqueDistricts; // 更新地區列表
+export default{
+    data(){
+        return{
+            // 儲存台南json的數據
+            tainanAtt:[],
+            // ==============================
+            // 儲存台南搜索時的關鍵詞
+            tainanSearch:'',
+            // ==============================
+            // 多選方框 1、從json檔中提取區來的地方
+            districts:[],
+            // 多選方框2、所勾選的欄位 
+            modelCheck:[],
+            // 多選方框3、使用v-show
+            checkVSif:'checkA',
+            // =========================
+            // 設定搜索時的顯示方式
+            searchVshow:'A',
+            // ==========================
+            // 儲存圖片(靜態)
+            tainanImg:[
+                {img:'./public/picture/南鯤鯓.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/馬沙溝海洋休閒運動渡假中心.jpg'} ,
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'./public/picture/東隆宮.jpg'} ,
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                {img:'https://www.swcoast-nsa.gov.tw/image/36619/1024x768'},
+                
+            ],
+            // 用來儲存搜尋時(動態)，json檔中的位置與我們自己的圖片路徑(相對位置)
+            saveImgUrl:[],
+
+            // 加上翻頁功能
+            start:0,
+            end:10,
+            filteredAttData:[],
+        }
     },
-    districtChanged() { 
-      // 地區下拉式選單改變時的方法
-      if (this.selectedDistrict === '--請選擇--') {
-        // 如果選擇了預設值，清空地址和名稱的選擇
-        this.selectedAddress = ''; 
-        this.selectedName = '';
-      }
-      this.updateDistrictData(this.selectedDistrict); // 更新地區相關資料
+    // =========================================================
+    mounted(){
+        this.tainan();
     },
-    addressChanged() { 
-      // 地址下拉式選單改變時的方法
-      this.selectedAddress = this.$refs.selectAddress.value; // 更新選擇的地址
-      this.selectedName = this.names[this.addresses.indexOf(this.selectedAddress)]; // 根據所選的地址更新所選的名稱
+    // =========================================================
+    methods:{
+        tainan(){
+            fetch("./public/檔案/attractions_zh-tw.json")
+            .then(res => res.json())
+            .then(data => {
+                this.tainanAtt = data;
+                console.log(data);
+
+                const allDistricts = data.map(item => item.district);
+                this.districts = [...new Set(allDistricts)];
+            })
+            .catch(error => {
+                console.error('資訊錯誤:', error);
+            });
+        },
+        searchAll(){
+            if(!this.tainanSearch || this.tainanSearch.length < 2  ){
+                // 當搜索值小於2時，展示全部資訊
+                this.searchVshow="A";
+            }else{
+                // 符合條件時，會跳過去搜尋資訊
+                this.searchVshow="B";
+            }
+            this.filteredAtt.forEach((attraction, index) => {
+                    if (this.tainanImg[index]) {
+                        attraction.imagePath = this.tainanImg[index].img;
+                    }
+                });
+        },
+        // 設定如果按了打叉或者刪除文字後，可以正常地跳回"A"
+        cancelSearch(){
+            this.searchVshow = 'A';
+            this.tainanSearch = ''; // 可选：将搜索框清空
+        },
+        // ====================建立翻頁功能===================================
+        page(index){
+            // 當索引值大於等於start=0時，以及 小於end=10時
+            return index >= this.start && index < this.end;
+        },
+        // 上一頁
+        prevPage() {
+            if (this.start == 0) {
+                alert("已經是第一頁了!")
+            }else{
+                this.start -= 10;
+                this.end -= 10;
+            }
+        },
+        // 下一頁，this.end是指當前頁結束的索引位置;this.tainanAtt.length這是指所有景點的總數量
+        // 如果為true才會繼續顯示下一頁
+        nextPage() {
+            if (this.end >= this.filteredAtt.length  ) {
+                alert("此為最後一頁")
+            }else{
+                // this.start這裡的start是指當前的索引位置
+                this.start += 10;
+                this.end += 10;
+            }
+        },
     },
-    nameChanged() { 
-      // 名稱下拉式選單改變時的方法
-      this.selectedName = this.$refs.selectName.value; // 更新選擇的名稱
-      this.selectedAddress = this.addresses[this.names.indexOf(this.selectedName)]; // 根據所選的名稱更新所選的地址
+    computed:{
+        // 搜索資料
+        filteredAtt(){
+            if (!this.tainanSearch || this.tainanSearch.length < 2) {
+                return this.tainanAtt;
+            } else {
+                return this.tainanAtt.filter((item) => {
+                    return (
+                        item.name.includes(this.tainanSearch) ||
+                        item.address.includes(this.tainanSearch) ||
+                        item.category.includes(this.tainanSearch)
+                    );
+                })
+            }
+        },
+        
     },
-  },
-};
+    // =========================================================
+}
 </script>
 
 
 <template>
-  <div>
-    <select v-model="selectedDistrict" @change="districtChanged" ref="selectDistrict"> 
-      <option v-for="district in districts" :value="district">{{ district }}</option>
-    </select>
-    <select v-model="selectedAddress" @change="addressChanged" ref="selectAddress"> 
-      <option v-for="address in addresses" :value="address">{{ address }}</option>
-    </select>
-    <select v-model="selectedName" @change="nameChanged" ref="selectName"> 
-      <option v-for="name in names" :value="name">{{ name }}</option>
-    </select>
-  </div>
 
-  <div class="card" style="width: 18rem;">
-  <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
+<div class="bigArea">
+    <input class="searchArea" id="searchArea" v-model.lazy.trim="tainanSearch" @input="searchAll"  @clear="cancelSearch" type="search" placeholder="請輸入欲搜索景點(至少兩個字)">
+
+    <!-- 景點(圖片+景點名稱) -->
+    <!-- 如果搜索時，顯示:圖片+景點名稱+地址+電話 -->
+    <!-- 如果未搜索時，顯示全部 -->
+    <div class="attractions"  v-for="(item,index) in filteredAtt" v-show="searchVshow && page(index)" :key="index">
+
+        <div class="attractionsImg"  >
+            <img class="imgItem"  v-bind:src="item.imagePath" alt='tainanImg'>
+        </div>
+        <div class="attractionsText" >
+            <div class="attractionsName">{{ item.name }}</div>
+            <div class="attractionsAddress">{{ item.address }}</div>
+            <div class="attractionsTel">{{ item.tel }}</div>
+        </div>
+
+    </div>
+
+
+    <!-- 加入上下按鈕 -->
+    <div class="buttonArea">
+        <button class="buttonPage" @click="prevPage" >上一頁</button>
+        <button class="buttonPage" @click="nextPage">下一頁</button>
+    </div>  
 </div>
+    
 </template>
 
-<style scoped lang="scss"></style>
+
+<style scoped lang="scss">
+.leftArea{
+    width: 10%;
+    height: 80dvh;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: left;
+    align-items: center;
+    border: 1px solid black;
+    position: fixed;
+    left: 0;
+    top: 12dvh;
+}
+
+.checkArea{
+    margin-left: 10%;
+    font-size: 15px;
+}
+
+.bigArea{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-self: start;
+    align-items: center;
+}
+
+.searchArea{
+    width: 45%;
+    height: 5dvh;
+    margin-top: 5px;
+    border-radius: 5px;
+    font-size: 28px;
+}
+
+.attractions{
+    width: 50%;
+    height: 15dvh;
+    border: 1px solid black;
+    margin-top:1% ;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+
+    transition: 0.4 s;
+
+    &:hover{
+        scale: 1.05;
+    }
+}
+
+.attractionsImg{
+    width: 30%;
+    height: 95%;
+    border: 1px solid black;
+    margin-left: 1%;
+}
+
+.imgItem{
+    width: 100%;
+    height:100% ;
+    object-fit: cover;
+    overflow: hidden;
+    border: 1px solid rgb(255, 0, 0);
+}
+
+.attractionsText{
+    width: 67%;
+    height: 95%;
+    margin-left: 1.5%;
+    border: 1px solid black;
+}
+
+.attractionsName{
+    font-size: 20px;
+    margin-top: 2%;
+    margin-left: 1%;
+}
+
+.attractionsAddress{
+    font-size: 15px;
+    margin-top: 1%;
+    margin-left: 1%;
+}
+
+.attractionsTel{
+    font-size: 15px;
+    padding-left: 1%;
+}
+
+.buttonArea{
+    width: 50%;
+    height: 10dvh;
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 1%;
+}
+
+.buttonPage{
+    width: 35%;
+    height: 60%;
+    margin: 5%;
+}
+</style>
