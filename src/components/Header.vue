@@ -10,7 +10,7 @@ export default{
 </script>
 
 <template>
-
+<img src="public/imags/活動/location.png" alt="">
     <div class="headerArea">
     <RouterLink class="routerItem" to="/">Home</RouterLink>
     <RouterLink class="routerItem" to="/hotel">Hotel</RouterLink>
