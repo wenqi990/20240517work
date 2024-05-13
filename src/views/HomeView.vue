@@ -1,5 +1,5 @@
 <script setup>
-
+import Map from './Map.vue'
 </script>
 
 <template>
@@ -8,8 +8,33 @@
     </div>
   <img src="/public/imags/Hotel img/台南住宿.jpg" style="width: 100%;height: 80dvh;">
     <div class="about">
-    <h1>四大圖片連結 四大分頁</h1>
   </div>
+
+  <div class="icon">
+  <div class="info-carousel">
+    <div class="info-box" style="--wd-col-lg:4;--wd-col-md:4;--wd-col-sm:2;--wd-gap-lg:30px;--wd-gap-sm:10px;">
+      <div class="info-item active">
+        <img src="https://havefunday.com/wp-content/uploads/2023/06/400X400-icon_全台美食-150x150.png" alt="美食分享">
+        <h4>美食分享</h4>
+        <a href="#" aria-label="Infobox link"></a>
+      </div>
+      <div class="info-item">
+        <img src="https://havefunday.com/wp-content/uploads/2023/06/400X400-icon_景點-150x150.png" alt="旅遊景點">
+        <h4>旅遊景點</h4>
+        <a href="#" aria-label="Infobox link"></a>
+      </div>
+      <div class="info-item">
+        <img src="https://havefunday.com/wp-content/uploads/2023/07/400X400-icon_別墅-150x150.webp" alt="住宿推薦">
+        <h4>住宿推薦</h4>
+        <a href="#" aria-label="Infobox link"></a>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="mapBox">
+  <Map></Map>
+</div>
 
   <div class="second area">
         <div class="secondText">
@@ -145,6 +170,39 @@
 </template>
 
 <style scoped lang="scss">
+.icon {
+  display: flex;
+  background-color: #ffffff;
+  justify-content: center; 
+}
+
+.info-carousel { //設定寬度
+}
+
+.info-box {
+  margin-top: 100px;
+  display: flex;
+  gap: var(--wd-gap-lg); 
+}
+
+.info-item {
+  flex: 1; 
+  text-align: center; 
+}
+
+.info-item img {
+  max-width: 100%; 
+}
+
+h4 {
+  margin-top: 10px; 
+  margin-bottom: 0; 
+}
+
+.mapBox{
+  background-color: #ffffff;
+}
+
 .bg{
   position: fixed;
   bottom: 0;
@@ -153,6 +211,8 @@
     width: 100dvw;
   }
 }
+
+
 
 .second{
     height: 65dvh;

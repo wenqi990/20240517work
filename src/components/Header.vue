@@ -17,6 +17,7 @@ export default{
     <RouterLink class="routerItem" to="/Attractions">Attractions</RouterLink>
     <RouterLink class="routerItem" to="/TainanFood">Food</RouterLink>
     <RouterLink class="routerItem" to="/Activity">Activity</RouterLink>
+    <!-- <RouterLink class="routerItem" to="/Map">Map</RouterLink> -->
 　　
     </div>
 
@@ -24,16 +25,32 @@ export default{
 </template>
 
 <style scoped lang="scss">
+*{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 .headerArea{
+  display: flex;
+  justify-content: center;
+  align-items: center;
   widows: 100%;
-  height: 100%;
+  height: 52%;
   background: rgb(140, 128, 128);
-
+ 
+  
   .routerItem{
     color:azure;
     font-size:24px;
-    margin: 0 1%;
+    // margin: 0 1%;
     text-decoration: none;
+    padding: 20px;
+    
+    &:hover{
+      color: darkgoldenrod;
+      background-color: azure;
   }
+}
+
 }
 </style>
