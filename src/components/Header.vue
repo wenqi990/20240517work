@@ -23,6 +23,7 @@ export default{
     <!-- <RouterLink class="routerItem" to="/Map">Map</RouterLink> -->
     <div class="search">
         <input type="text" placeholder="搜尋">
+        <label></label>
         <button type="button" class="btn btn-dark">搜尋</button>
       </div>
     </div>
@@ -50,7 +51,7 @@ export default{
     font-size:24px;
     text-decoration: none;
     padding: 20px;
-    margin-right: 20px;
+    // margin-right: 20px;
     
     &:hover{
       color: darkgoldenrod;
@@ -61,6 +62,7 @@ export default{
 
 img{
   margin-right: 20px;
+  
 }
 
 .search{
@@ -68,14 +70,25 @@ margin-left: 100px;
 margin-right: -300px;
 
 input{
+  position: relative;
   width: 200px;
   height: 30px;
   padding: 0 10px;
-  border-radius: 10px;
+  // border-radius: 10px;
   border: none;
   margin-right: 10px;
+  border-bottom: 2px solid #000000;
+  background-color: transparent;
+  // display: none;
+  color: white;
   &:focus{
-      outline: 2px solid #9fd1fa;
+      outline: none;
+  
+}
+&::placeholder {
+  font-weight: bold;
+  // opacity: 0.5;
+  color: aliceblue;
 }
 }
 button{
