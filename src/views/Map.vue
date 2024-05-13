@@ -257,9 +257,9 @@
   }
   
   onMounted(() => {
-    fetchData("attractions_zh-tw.json", attractions);
-    fetchData("fixed_hotel_C_f.json", hotels);
-    fetchData("shops_zh-tw.json", shops); 
+    fetchData("/public/檔案/attractions_zh-tw.json", attractions);
+    fetchData("/public/檔案/fixed_hotel_C_f.json", hotels);
+    fetchData("/public/檔案/shops_zh-tw.json", shops); 
   });
   </script>
   

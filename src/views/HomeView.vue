@@ -1,5 +1,5 @@
 <script setup>
-
+import Map from './Map.vue'
 </script>
 
 <template>
@@ -10,6 +10,8 @@
     <div class="about">
     <h1>四大圖片連結 四大分頁</h1>
   </div>
+
+  <Map></Map>
 
   <div class="second area">
         <div class="secondText">
