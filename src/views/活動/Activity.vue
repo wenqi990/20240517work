@@ -156,9 +156,6 @@ const handleBackspaceKey = (event) => {
 }
 .header {
   width: 100%;
-  img{
-  display: inline-block;
-  }
   /* position: relative; */
 }
 

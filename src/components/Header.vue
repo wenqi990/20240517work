@@ -37,13 +37,15 @@ export default{
   widows: 100%;
   height: 52%;
   background: rgb(140, 128, 128);
-
+ 
+  
   .routerItem{
     color:azure;
     font-size:24px;
     // margin: 0 1%;
     text-decoration: none;
     padding: 20px;
+    
     &:hover{
       color: darkgoldenrod;
       background-color: azure;

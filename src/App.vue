@@ -15,6 +15,6 @@ import Header from './components/Header.vue';
 <style scoped lang="scss">
 .header{
   widows: 100dvw;
-  height: 20dvh;
+  // height: 20dvh;
 }
 </style>
