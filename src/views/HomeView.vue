@@ -1,5 +1,6 @@
 <script setup>
 import Map from './Map.vue'
+import Footer from '../views/Footer.vue'
 </script>
 
 <template>
@@ -167,6 +168,7 @@ import Map from './Map.vue'
               </div>
         </div>
     </div>
+    <Footer></Footer>
 </template>
 
 <style scoped lang="scss">
