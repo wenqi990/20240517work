@@ -736,6 +736,7 @@ export default{
 
 
 <template>
+    
 
     <div class="leftArea">
         <!-- 綁定json檔中的districts，將地址前都附上多選框 -->
@@ -795,10 +796,24 @@ export default{
     </div>  
 </div>
     
+<div class="bg">
+  <img src="/public/imags/景點類圖片/20220929215654_71.jpg" style="width: 100dvw;height: 100dvh;opacity: 5%;">
+</div>
+
 </template>
 
 
 <style scoped lang="scss">
+
+.bg{
+  position: fixed;
+  bottom: 0;
+  z-index: -999;
+  img{
+    width: 100dvw;
+  }
+}
+
 .leftArea{
     width: 10%;
     height: 80dvh;
