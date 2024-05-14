@@ -84,7 +84,7 @@ import Footer from '../views/Footer.vue'
     </div>
 
     <div class="fourth area">
-      <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" alt="">
+      <img src="/public/imags/首頁/奇美博物館.jpg" alt="">
       <div class="fourthText">
           <h1>讓我們一起嗨放景點</h1>
           <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
@@ -96,28 +96,28 @@ import Footer from '../views/Footer.vue'
       <h1>Title</h1>
         <div class="cradArea">
             <div class="card">
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+                <img src="/public/imags/首頁/鹽田.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
                 <div class="card-body">
                   <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
                   <a href="#" class="btn btn-primary">XXXXXX</a>
                 </div>
               </div>
             <div class="card" >
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+                <img src="/public/imags/首頁/漁光島.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
                 <div class="card-body">
                   <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
                   <a href="#" class="btn btn-primary">XXXXXXX</a>
                 </div>
               </div>
             <div class="card" >
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+                <img src="/public/imags/首頁/藍晒圖.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
                 <div class="card-body">
                   <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
                   <a href="#" class="btn btn-primary">XXXXXX</a>
                 </div>
               </div>
               <div class="card" >
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+                <img src="/public/imags/首頁/大魚的祝福.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
                 <div class="card-body">
                   <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
                   <a href="#" class="btn btn-primary">XXXXXX</a>
@@ -330,6 +330,8 @@ h4 {
         border-radius: 20%;
         box-shadow: 5px 5px 5px rgb(108, 107, 107);
         transition: 0.5s;
+        margin-top: 2.5rem;
+            margin-left: 2.5rem;
         // 鼠標移到按鈕時放大
         &:hover{
             scale: 1.05;
@@ -364,6 +366,7 @@ h4 {
             height: 90%;
             box-shadow: 5px 5px 5px rgb(108, 107, 107);
             transition: 0.5s;
+            
         // 鼠標移到按鈕時放大
         &:hover{
             scale: 1.05;
@@ -409,6 +412,8 @@ h4 {
         box-shadow: 5px 5px 5px rgb(108, 107, 107);
         transition: 0.5s;
         // 鼠標移到按鈕時放大
+        margin-top: 25px;
+        margin-left: 25px;
         &:hover{
             scale: 1.05;
         }
