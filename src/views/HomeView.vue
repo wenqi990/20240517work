@@ -15,19 +15,22 @@ import Footer from '../views/Footer.vue'
   <div class="info-carousel">
     <div class="info-box" style="--wd-col-lg:4;--wd-col-md:4;--wd-col-sm:2;--wd-gap-lg:30px;--wd-gap-sm:10px;">
       <div class="info-item active">
+        <a href="http://localhost:5173/TainanFood" aria-label="Infobox link">
         <img src="https://havefunday.com/wp-content/uploads/2023/06/400X400-icon_全台美食-150x150.png" alt="美食分享">
+        </a>
         <h4>美食分享</h4>
-        <a href="#" aria-label="Infobox link"></a>
       </div>
       <div class="info-item">
+        <a href="http://localhost:5173/Attractions" aria-label="Infobox link">
         <img src="https://havefunday.com/wp-content/uploads/2023/06/400X400-icon_景點-150x150.png" alt="旅遊景點">
+        </a>
         <h4>旅遊景點</h4>
-        <a href="#" aria-label="Infobox link"></a>
       </div>
       <div class="info-item">
+        <a href="http://localhost:5173/hotel" aria-label="Infobox link">
         <img src="https://havefunday.com/wp-content/uploads/2023/07/400X400-icon_別墅-150x150.webp" alt="住宿推薦">
+        </a>
         <h4>住宿推薦</h4>
-        <a href="#" aria-label="Infobox link"></a>
       </div>
     </div>
   </div>
