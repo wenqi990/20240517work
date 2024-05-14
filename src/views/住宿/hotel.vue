@@ -11,16 +11,17 @@ export default {
             pageSize: 9, // 一頁最多 9 張
             photos: [
                 "https://res.klook.com/image/upload/fl_lossy.progressive,q_85/c_fill,w_680/v1611214904/blog/hjyutoscnzdeknfmhwfp.jpg",
-                "https://dynamic-media-cdn.tripadvisor.com/media/photo-o/29/08/b7/8a/hotel-exterior.jpg?w=1200&h=-1&s=1",
-                "https://media.vogue.com.tw/photos/5db7e21022a7000008dc94f0/master/w_1600%2Cc_limit/2019091245213073.jpg",
                 "https://www.gomag.com.tw/upload/1552464887-2091549859_l.jpg",
                 "https://cf.bstatic.com/xdata/images/hotel/max1024x768/139851546.jpg?k=e83384474084d3dcfc47b0adb2d536efa6dd975932014a67648d1ae416afb0cb&o=&hp=1",
+                "https://i0.wp.com/woohoteltw.com/wp-content/uploads/2024/03/3fbdf493742514e8e73d8fed9b27bb58.webp?resize=1009%2C672&ssl=1",
                 "https://today-obs.line-scdn.net/0hZM2AkUkeBWIPOBOMDVN6NStuBg08VBZhaw5UcFhdPTwiD0M9O18dBnhvXFV2CkIyM1YeACo5WFBnCRdmN1xNB3g/w644",
                 "https://www.niusnews.com/upload/posts/posts_image3_101106_1616996992.jpg",
                 "https://storage.googleapis.com/smiletaiwan-cms-cwg-tw/article/202010/article-5f8437cee7bd7.jpg",
-                "https://img.asiayo.com/img/landlord/B005495/desc_SnNFWHSJaPraLy.jpeg"
+                "https://img.asiayo.com/img/landlord/B005495/desc_SnNFWHSJaPraLy.jpeg",
+                "https://hips.hearstapps.com/hmg-prod/images/%E5%8F%B0%E5%8D%97%E7%B6%89%E6%BA%AA%E5%AE%89%E5%B9%B3%E9%A3%AF%E5%BA%97-%E6%88%BF%E8%99%9F303-%E6%B8%AF%E5%B2%B8-%E9%9B%99%E4%BA%BA%E6%88%BFs-658e5084c3eb1.jpg",
+                "https://hips.hearstapps.com/hmg-prod/images/399279100-755793543234123-6516782647033679722-n-658e70c584db9.jpg?crop=1.00xw:0.668xh;0,0.299xh&resize=980:*"
             ],
-            
+            historyRecords: [], // 用於存儲歷史紀錄的數組
         };
     },
     mounted() {
@@ -75,14 +76,11 @@ export default {
                 this.currentPage++;
             }
         },
-        // getRandomPhoto() {
-        //     // 使用 Math.random() 生成一個隨機索引
-        //     let randomIndex = Math.floor(Math.random() * this.photos.length);   
-            
-        //     // 返回隨機照片的網址
-        //     return this.photos[randomIndex];
-
-        // },
+        addToHistory(item) {
+            if (this.historyRecords.length < 5) {
+                this.historyRecords.push(item);
+            }
+        },
     },
     computed: { // 1.監聽多變數觸發事件 2.會產生一個值 3.只要變數沒動，就不會再 run 一次
         filteredHotels() {
@@ -124,10 +122,10 @@ export default {
 
 <template>
     <div class="pictureArea">
-        <img src="https://image.pandafishstory.com/content/%E5%8F%B0%E5%8D%97%E9%A3%AF%E5%BA%97%E6%8E%A8%E8%96%A6.jpg"
-            alt="台南飯店">
+        <img src="https://d3f9k0n15ckvhe.cloudfront.net/wp-content/uploads/2021/10/forest-lake_1440x520.png" alt="台南飯店">
     </div>
 
+    <!-- 篩選欄位 -->
     <div class="searchArea">
         <select v-model="selectedCity" @change="cityChanged" ref="selectCity">
             <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
@@ -142,10 +140,11 @@ export default {
     </div>
 
     <div class="bootstrapArea">
-        <div v-for="(item, index) in paginatedHotels" :key="index" class="card">
+        <div v-for="(item, index) in paginatedHotels" :key="index" class="card" @click="addToHistory(item)">
             <div class="row g-0 flex-row">
                 <div class="col-md-5">
-                    <img :src="this.photos[index]" class="img-fluid rounded-start" alt="飯店">
+                    <img :src="this.photos[index]" class="img-fluid rounded-start" alt="飯店"
+                        @click="showHotelDetails(item)">
                 </div>
                 <div class="col-md-7">
                     <div class="card-body">
@@ -154,20 +153,36 @@ export default {
                         <p class="card-text"> 最優惠價格：{{ item.LowestPrice }} </p>
                         <p class="card-text"> 電話：{{ item.Tel }} </p>
                         <p class="card-text"> {{ item.Parkinginfo }} </p>
+                        <p class="card-text"> 電子郵件：{{ item.IndustryEmail }} </p>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- 上一頁 下一頁 -->
     <div class="pagination">
         <button @click="prevPage" :disabled="currentPage === 1">Previous</button>
         <span>{{ currentPage }}</span>
         <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
     </div>
 
+    <div class="lineArea"></div>
 
-    <div class="footerArea"></div>
+    <h1>歷史紀錄</h1>
+
+    <!-- 歷史紀錄 -->
+    <div class="wrapperArea">
+        <div v-for="(record, index) in historyRecords" :key="index" class="card">
+            <img :src="this.photos[index]" class="card-img-top" :alt="record.Name">
+            <div class="card-body">
+                <p class="card-text">{{ record.Name }}</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="footerArea">
+    </div>
 
 </template>
 
@@ -175,22 +190,20 @@ export default {
 .pictureArea {
     display: flex;
     width: 100%;
-    height: 60dvh;
-    // border: 1px solid black;
+    height: 100%;
     justify-content: center;
     align-items: center;
 
     img {
-        width: 823px;
-        height: 438px;
+        width: 100%;
+        height: 100%;
     }
 }
 
 .searchArea {
     display: flex;
     width: 100%;
-    height: 6dvh;
-    // border: 1px solid black;
+    height: 9dvh;
     justify-content: center;
     align-items: center;
 
@@ -204,21 +217,34 @@ export default {
     flex-wrap: wrap;
     width: 100%;
     height: 100%;
-    border: 1px solid black;
     justify-content: center;
     align-items: center;
     padding: 0% 16%;
 
-    .row {
+    .flex-row {
+        //卡片的外框
         width: 100%;
         height: 100%;
-        border: 1px solid black;
         margin: 0;
         margin-top: 3%;
+        border-radius: 6px;
+        background: rgba(0, 0, 0, 0.789);
     }
 
     p {
-        font-size: 19px;
+        // 卡片裡面的文字
+        font-size: 16px;
+        color: white;
+    }
+
+    .img-fluid {
+        // 照片的大小
+        width: 100%;
+        height: 100%;
+    }
+
+    .card {
+        border: none;
     }
 }
 
@@ -226,7 +252,6 @@ export default {
     display: flex;
     width: 100%;
     height: 15dvh;
-    border: 1px solid black;
     justify-content: center;
     align-items: center;
 
@@ -242,12 +267,47 @@ export default {
     }
 }
 
+.lineArea {
+    width: 100%;
+    border: 1px solid black;
+}
+
+h1 {
+    display: flex;
+    margin-top: 3%;
+    justify-content: center;
+    align-items: center;
+}
+
+.wrapperArea {
+    display: flex;
+    width: 100%;
+    height: 58dvh;
+    justify-content: center;
+
+    .card {
+        width: 18rem;
+        height: 16dvh;
+        line-height: 110px;
+        text-align: center;
+        background-color: white;
+        margin: 3% 1%;
+        border-radius: 12px;
+    }
+
+    .card-body {
+        display: flex;
+        font-size: 1rem;
+        background: white;
+        justify-content: center;
+        align-items: center;
+        border: 1px solid black;
+    }
+}
+
 .footerArea {
     width: 100%;
     height: 15dvh;
-    border: 1px solid black;
     background: rgb(140, 128, 128);
 }
-
-
 </style>
