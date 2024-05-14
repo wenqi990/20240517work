@@ -91,7 +91,7 @@ import 'primeicons/primeicons.css'
     color: #fff;
    
 }
-.icon .pi pi-facebook{
+.icon .pi-facebook{
     color: #1A6ED8;
 
 }
@@ -100,26 +100,26 @@ import 'primeicons/primeicons.css'
 
     
 }
-.icon .pi pi-twitter{
-    color: #1DA1F2;
+.icon .pi-twitter{
+    color: #000000;
 }
 .twt:hover{
     background: #000000;
 }
-.icon .pi pi-instagram{
+.icon .pi-instagram{
     color: #ef55b9;
 }
 .ig:hover{
-    background: rgb(2,0,36);
+    // background: rgb(2,0,36);
     background: linear-gradient(90deg, rgba(2,0,36,1) 0%, rgba(136,29,227,1) 0%, rgba(187,29,183,1) 12%, rgba(255,206,0,1) 100%);
 }
-.icon .pi pi-discord{
+.icon .pi-discord{
     color: #000;
 }
 .discord:hover{
     background: rgb(114,137,218);
 }
-.icon .pi pi-youtube{
+.icon .pi-youtube{
     color: #FE0000;
 }
 .yt:hover{
