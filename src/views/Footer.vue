@@ -47,7 +47,7 @@ import 'primeicons/primeicons.css'
     .footer{
         width: 100%;
         height: 20dvh;
-        background: rgb(140, 128, 128);
+        background: rgb(192, 183, 183);
         display: flex;
         align-items: center;
         justify-content: center;

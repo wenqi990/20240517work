@@ -43,11 +43,11 @@ export default{
   align-items: center;
   widows: 100%;
   height: 52%;
-  background: rgb(140, 128, 128);
+  background: rgb(192, 183, 183);
   
   
   .routerItem{
-    color:azure;
+    color:rgb(27, 27, 26);
     font-size:24px;
     text-decoration: none;
     padding: 20px;
@@ -75,12 +75,13 @@ input{
   height: 30px;
   padding: 0 10px;
   // border-radius: 10px;
+  font-size: 1.2rem;
   border: none;
   margin-right: 10px;
   border-bottom: 2px solid #000000;
   background-color: transparent;
   // display: none;
-  color: white;
+  color: rgb(27, 27, 26);
   &:focus{
       outline: none;
   
@@ -88,7 +89,7 @@ input{
 &::placeholder {
   font-weight: bold;
   // opacity: 0.5;
-  color: aliceblue;
+  color: rgb(0, 0, 0);
 }
 }
 button{
