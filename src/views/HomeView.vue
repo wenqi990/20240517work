@@ -40,7 +40,7 @@ import Footer from '../views/Footer.vue'
   <div class="second area">
         <div class="secondText">
             <h5>讓我們一起嗨放美食</h5>
-            <p >Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis nobis a odio ad tempora officia nam ullam incidunt ipsam nisi vel, doloremque autem minus dolorum.</p>
+            <p>白糖粿，據說是南方才有的特殊甜食。源自福建漳泉的習慣，南部人會在七夕用白糖粿拜七娘媽(織女)求好姻緣習俗，因此深受女孩喜愛！炸白糖粿時候，一定要在粿上按個凹槽，老人家說，那是用來承裝織女的眼淚。白糖粿其實就是把粿油炸後滾糖粉製成，花生、芝麻是更多趣味變化的做法。</p>
             <div>
     <!-- //bootstrap 效果 -->
     <button class="btn btn-primary">所有美食</button> 
