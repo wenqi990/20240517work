@@ -46,35 +46,35 @@ import Footer from '../views/Footer.vue'
     <button class="btn btn-primary">所有美食</button> 
   </div>
         </div>
-        <img src="/public/imags/景點類圖片/東隆宮文化中心.jpg" alt="圖片">
+        <img src="/public/imags/首頁/牛肉湯.webp" alt="圖片" style="object-fit: cover;">
     </div>
 
     <div class="third area">
       <h1>Title</h1>
         <div class="cradArea">
             <div class="card">
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+                <img src="/public/imags/首頁/棺材板.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
                 <div class="card-body">
                   <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
                   <a href="#" class="btn btn-primary">XXXXXX</a>
                 </div>
               </div>
             <div class="card" >
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+                <img src="/public/imags/首頁/白糖粿.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
                 <div class="card-body">
                   <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
                   <a href="#" class="btn btn-primary">XXXXXXX</a>
                 </div>
               </div>
             <div class="card" >
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+                <img src="/public/imags/首頁/蛋黃.webp" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
                 <div class="card-body">
                   <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
                   <a href="#" class="btn btn-primary">XXXXXX</a>
                 </div>
               </div>
               <div class="card" >
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+                <img src="/public/imags/首頁/豆腐冰.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
                 <div class="card-body">
                   <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
                   <a href="#" class="btn btn-primary">XXXXXX</a>
@@ -212,6 +212,7 @@ h4 {
   z-index: -999;
   img{
     width: 100dvw;
+    
   }
 }
 
