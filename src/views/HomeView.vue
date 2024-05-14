@@ -50,7 +50,7 @@ import Footer from '../views/Footer.vue'
     </div>
 
     <div class="third area">
-      <h1>Title</h1>
+      <h1>推薦美食</h1>
         <div class="cradArea">
             <div class="card">
                 <img src="/public/imags/首頁/棺材板.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
