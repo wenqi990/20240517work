@@ -576,9 +576,14 @@ export default{
 
             // ========================
             // 多選區
+            // 1、縣市
             districts: [], //用於抓取json檔中的districts
             modelCheck: [],//多選的方框
             selectedDistricts: [], //勾選後的資訊放入這裡
+            // 2、活動類別
+            categorys:[],
+            categoryCheck:[],
+            selectCategory:[],
         }
     },
     // =========================================================
@@ -599,10 +604,17 @@ export default{
                     item.imagePath = this.tainanImg[index]
                 })
 
-                console.log(data);
-
+                // console.log(data);
+                // 提取縣市
                 const allDistricts = data.map(item => item.district);
                 this.districts = [...new Set(allDistricts)];
+                // 提取類別
+                // 使用reduce將所有景點收集到一個陣列中,
+                const allCategory = data.reduce((acc,item) =>{
+                    acc.push(...item.category);
+                    return acc;
+                },[] );
+                this.categorys = [...new Set(allCategory)];
             })
             .catch(error => {
                 console.error('資訊錯誤:', error);
@@ -682,13 +694,20 @@ export default{
         },
         // =========================================================
         // 多選框
+        // 針對縣市
         checkDistrict() {
             // 點及按鈕，獲取勾選區域
             //使用[...]=>擴展運算，創建新的數據，不直接使用原數據
             // 這裡的目的是為了，確保selectedDistricts為獨立數據，不受modelCheck影響
             this.selectedDistricts = [...this.modelCheck];
-            this.filteredAtt
+            this.filteredAtt();
         },
+        // 針對類別
+        checkCategory(){
+            this.categoryCheck=[...this.selectCategory];
+            this.filteredAtt();
+            // console.log(this.selectCategory);
+        }
     },
 // =======================================================
 /**computed:計算屬性，用於
@@ -699,24 +718,39 @@ export default{
     computed:{
         // 搜索資料
         filteredAtt(){
-            if ((!this.tainanSearch || this.tainanSearch.length < 2 )&&this.selectedDistricts.length === 0 ) {
-                return this.tainanAtt;
-            } else {
-                return this.tainanAtt.filter((item) => {
-                    const searchMatch= (
-                        item.name.includes(this.tainanSearch) ||
-                        item.address.includes(this.tainanSearch) ||
-                        item.category.includes(this.tainanSearch) ||
-                        item.district.includes(this.tainanSearch) 
-                    );
-                    const districtMatch = (
-                        this.selectedDistricts.length === 0 || // 如果没有选择地区，返回true，表示匹配所有地区
-                        this.selectedDistricts.includes(item.district) // 如果选择了地区，只返回匹配选择地区的景点
-                    );
-                    // 返回搜索匹配和地区匹配都为true的景点
-                    return searchMatch && districtMatch;
-                })
-            }
+            // if ((!this.tainanSearch || this.tainanSearch.length < 2 )&&this.selectedDistricts.length === 0 && this.selectCategory.length===0) {
+            //     return this.tainanAtt;
+            // } else {
+            //     return this.tainanAtt.filter((item) => {
+            //         const searchMatch= (
+            //             item.name.includes(this.tainanSearch) ||
+            //             item.address.includes(this.tainanSearch) ||
+            //             item.category.includes(this.tainanSearch) ||
+            //             item.district.includes(this.tainanSearch) 
+            //         );
+            //         const districtMatch = (
+            //             this.selectedDistricts.length === 0 || 
+            //              //如果沒有選擇，返回true，匹配所有景點
+            //             this.selectedDistricts.includes(item.district) 
+            //              //如果選擇了地點，只返回選擇地點的景點
+            //         );
+            //         const categoryMath=(
+            //             this.selectCategory.length===0||
+            //             this.selectCategory.includes(item.category)
+            //         )
+            //         // 返回搜索匹配和地區匹配以及類型匹配，為true的景点
+            //         return searchMatch && districtMatch && categoryMath;
+            //     })
+            // }
+            return this.tainanAtt.filter((item) => {
+                const nameMatch = item.name.includes(this.tainanSearch);
+                const addressMatch = item.address.includes(this.tainanSearch);
+                const districtMatch = this.selectedDistricts.length === 0 || this.selectedDistricts.includes(item.district);
+                const categoryMatch = this.selectCategory.length === 0 || this.selectCategory.some(cat => item.category.includes(cat));
+
+                // 同時考慮搜索框和多選框的輸入
+                return (nameMatch || addressMatch) && districtMatch && categoryMatch;
+            });
         },
         totalPagesArray(){
             return Array.from({ length: this.totalPages }, (_, index) => index + 1);
@@ -741,65 +775,75 @@ export default{
 
 
 <template>
-    
+<div class="big">   
 
     <div class="leftArea">
+        <!-- 搜索 -->
+        <!-- 逐步解析:
+            1、lazy:在更新數據時使用，用於"輸入時，值並不會立馬更新"(需要特定按鈕才會開始更新"例如enter")
+            2、trim:自動刪除值的前後空格
+            @:做監聽事件
+            3、@input=""  :方法中做監聽，也就是輸入時做searchAll這個涵式
+            4、@clear=""  :clear是自訂義事件，指清除...，這邊再次做確定(清除搜索結果或重置搜索狀態=>讓她確保可以A時顯示資訊)
+
+            搜索欄只設定可搜索景點名稱和地址
+        -->
+        <input class="searchArea" id="searchArea" v-model.lazy.trim="tainanSearch" @input="searchAll"  @clear="cancelSearch" type="search" placeholder="請輸入欲搜索景點(至少兩個字)">
         <!-- 綁定json檔中的districts，將地址前都附上多選框 -->
         <!-- 利用v-for來遍歷districts  -->
-        <p>縣市</p>
+        <p class="textP">縣市:</p>
         <div class="checkArea" v-for="district in districts" :key="district">
             <!-- 並附上複選框 -->
             <!-- 每個複選框接有一個v-model==>也就是，將資訊綁定到上面，
             當複選框被選中或取消時,modelCheck都會改變
              -->
-            <label for="checkbox">{{ district }}</label>
+            <label :for="'checkbox-' + district">{{ district }}</label>
             <input class="checkbox" id="'checkbox-'+district" type="checkbox" v-model="selectedDistricts" :value="district" name="">
         </div>
+
+
+        <p class="textP">活動類型:</p>
+        <div class="checkArea" v-for="category in categorys" :key="category">
+            <label :for="'checkbox2-' + category">{{ category }}</label>
+            <input class="checkbox2" id="'checkbox2-'+district" type="checkbox" v-model="selectCategory" :value="category" name="">
+        </div>
     </div>
 
-<div class="bigArea">
-    <!-- 搜索 -->
-    <!-- 逐步解析:
-        1、lazy:在更新數據時使用，用於"輸入時，值並不會立馬更新"(需要特定按鈕才會開始更新"例如enter")
-        2、trim:自動刪除值的前後空格
-        @:做監聽事件
-        3、@input=""  :方法中做監聽，也就是輸入時做searchAll這個涵式
-        4、@clear=""  :clear是自訂義事件，指清除...，這邊再次做確定(清除搜索結果或重置搜索狀態=>讓她確保可以A時顯示資訊)
-    -->
-    <input class="searchArea" id="searchArea" v-model.lazy.trim="tainanSearch" @input="searchAll"  @clear="cancelSearch" type="search" placeholder="請輸入欲搜索景點(至少兩個字)">
+    <div class="rightArea">
 
-    <!-- 景點(圖片+景點資訊) -->
-    <!-- 如果搜索時，顯示:圖片+景點名稱+地址+電話 -->
-    <!-- 如果未搜索時，顯示全部 -->
-    <div class="attractions"  v-for="(item,index) in filteredAtt" v-show="searchVshow && page(index)" :key="item.id">
+        <!-- 景點(圖片+景點資訊) -->
+        <!-- 如果搜索時，顯示:圖片+景點名稱+地址+電話 -->
+        <!-- 如果未搜索時，顯示全部 -->
+        <div class="attractions"  v-for="(item,index) in filteredAtt" v-show="searchVshow && page(index)" :key="item.id">
 
-        <div class="attractionsImg"  >
-            <img class="imgItem"  v-bind:src="item.imagePath" alt='tainanImg'>
-        </div>
-        <!-- 顯示我搜索的資料 -->
-        <!-- 使用v-show，如果輸入框有輸入文字，則"只"出現"符合"的景點的資訊 -->
-        <!-- 如果輸入框未輸入文字，則出現"所有"景點的資訊 -->
-        <div class="attractionsText" >
-            <div class="attractionsName">{{ item.name }}</div>
-            <div class="attractionsAddress">地址: {{ item.address }}</div>
-            <div class="attractionsTel">電話: {{ item.tel }}</div>
+            <div class="attractionsImg"  >
+                <img class="imgItem"  v-bind:src="item.imagePath" alt='tainanImg'>
+            </div>
+            <!-- 顯示我搜索的資料 -->
+            <!-- 使用v-show，如果輸入框有輸入文字，則"只"出現"符合"的景點的資訊 -->
+            <!-- 如果輸入框未輸入文字，則出現"所有"景點的資訊 -->
+            <div class="attractionsText" >
+                <div class="attractionsName">{{ item.name }}</div>
+                <div class="attractionsAddress">地址: {{ item.address }}</div>
+                <div class="attractionsTel">電話: {{ item.tel }}</div>
+            </div>
+
         </div>
 
+
+        <!-- 加入上下按鈕 -->
+        <div class="buttonArea">
+            <button class="buttonPage" @click="firstPage" >第一頁</button>
+            <button class="buttonPage" @click="prevPage" >上一頁</button>
+            <select v-model="selectedPage" @change="updateSelectedPage">
+                <option v-for="page in totalPagesArray" :value="page">{{ page }}</option>
+            </select>
+            <button class="buttonPage" @click="nextPage">下一頁</button>
+            <button class="buttonPage" @click="lastPage">最後一頁</button>
+        </div>  
     </div>
-
-
-    <!-- 加入上下按鈕 -->
-    <div class="buttonArea">
-        <button class="buttonPage" @click="firstPage" >第一頁</button>
-        <button class="buttonPage" @click="prevPage" >上一頁</button>
-        <select v-model="selectedPage" @change="updateSelectedPage">
-            <option v-for="page in totalPagesArray" :value="page">{{ page }}</option>
-        </select>
-        <button class="buttonPage" @click="nextPage">下一頁</button>
-        <button class="buttonPage" @click="lastPage">最後一頁</button>
-    </div>  
 </div>
-    
+
 <div class="bg">
   <img src="/public/imags/景點類圖片/20220929215654_71.jpg" style="width: 100dvw;height: 100dvh;opacity: 5%;">
 </div>
@@ -810,51 +854,58 @@ export default{
 <style scoped lang="scss">
 
 .bg{
-  position: fixed;
-  bottom: 0;
-  z-index: -999;
-  img{
-    width: 100dvw;
-  }
+    position: fixed;
+    bottom: 0;
+    z-index: -999;
+    img{
+        width: 100dvw;
+    }
+}
+
+.big{
+    display: flex;
+    justify-content: left;
 }
 
 .leftArea{
-    width: 10%;
+    width: 20%;
     height: 80dvh;
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
-    align-items: center;
     border: 1px solid black;
-    position: fixed;
-    left: 0;
-    top: 12dvh;
+    margin-left: 1%;
+
+    .searchArea{
+        width: 100%;
+        height: 5dvh;
+        margin-top: 5px;
+        border-radius: 5px;
+        font-size: 24px;
+    }
+
+    .textP{
+        width: 100%;
+        height: 3%;
+        font-size: 20px;
+        font-weight: 100px;
+        margin-top: 1%;
+    }
 }
 
-.checkArea{
-    margin-left: 10%;
-    font-size: 15px;
-}
 
-.bigArea{
-    width: 100%;
+.rightArea{
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-self: start;
     align-items: center;
 }
 
-.searchArea{
-    width: 45%;
-    height: 5dvh;
-    margin-top: 5px;
-    border-radius: 5px;
-    font-size: 28px;
-}
 
 .attractions{
-    width: 50%;
-    height: 15dvh;
+    width: 80%;
+    height: 20dvh;
     border: 1px solid black;
     margin-top:1% ;
     display: flex;
@@ -871,7 +922,7 @@ export default{
 .attractionsImg{
     width: 30%;
     height: 95%;
-    border: 1px solid black;
+    // border: 1px solid black;
     margin-left: 1%;
 }
 
@@ -880,7 +931,7 @@ export default{
     height:100% ;
     object-fit: cover;
     overflow: hidden;
-    border: 1px solid rgb(255, 0, 0);
+    // border: 1px solid rgb(255, 0, 0);
 }
 
 .attractionsText{
@@ -908,7 +959,7 @@ export default{
 }
 
 .buttonArea{
-    width: 50%;
+    width: 80%;
     height: 10dvh;
     border: 1px solid black;
     display: flex;
