@@ -53,28 +53,28 @@ import Footer from '../views/Footer.vue'
       <h1>推薦美食</h1>
         <div class="cradArea">
             <div class="card">
-                <img src="/public/imags/首頁/棺材板.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
+                <img src="/public/imags/首頁/棺材板.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 279px;height: 200px;">
                 <div class="card-body">
                   <p class="card-text">內餡也改良為海鮮、玉米火腿、雞肉等西式食材，成為台南著名的小吃之一</p>
                   <a href="#" class="btn btn-primary">XXXXXX</a>
                 </div>
               </div>
             <div class="card" >
-                <img src="/public/imags/首頁/牛肉湯.webp" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
+                <img src="/public/imags/首頁/牛肉湯.webp" class="card-img-top" alt="卡片" style="object-fit: cover;width: 279px;height: 200px;">
                 <div class="card-body">
                   <p class="card-text">台南的善化是最大規模的屠宰場之一，所以台南的牛肉湯就開始蓬勃發展，並在媒體與政府的宣傳影響下，逐漸成為著名的料理</p>
                   <a href="#" class="btn btn-primary">XXXXXXX</a>
                 </div>
               </div>
             <div class="card" >
-                <img src="/public/imags/首頁/蛋黃.webp" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
+                <img src="/public/imags/首頁/蛋黃.webp" class="card-img-top" alt="卡片" style="object-fit: cover;width: 279px;height: 200px;">
                 <div class="card-body">
                   <p class="card-text">Q彈的白米飯，淋上鹹香的豬油醬油，搭上半熟荷包蛋，儘管沒有豐富配菜，也會一碗接著一碗</p>
                   <a href="#" class="btn btn-primary">XXXXXX</a>
                 </div>
               </div>
               <div class="card" >
-                <img src="/public/imags/首頁/豆腐冰.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
+                <img src="/public/imags/首頁/豆腐冰.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 279px;height: 200px;">
                 <div class="card-body">
                   <p class="card-text">形似豆腐而得名，味甜，清爽，略帶杏仁味，一種與之類似的歐洲甜點是法式奶凍</p>
                   <a href="#" class="btn btn-primary">XXXXXX</a>
