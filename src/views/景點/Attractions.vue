@@ -699,17 +699,22 @@ export default{
     computed:{
         // 搜索資料
         filteredAtt(){
-            if (!this.tainanSearch || this.tainanSearch.length < 2 ||this.selectedDistricts.length ==0) {
+            if ((!this.tainanSearch || this.tainanSearch.length < 2 )&&this.selectedDistricts.length === 0 ) {
                 return this.tainanAtt;
             } else {
                 return this.tainanAtt.filter((item) => {
-                    return (
+                    const searchMatch= (
                         item.name.includes(this.tainanSearch) ||
                         item.address.includes(this.tainanSearch) ||
                         item.category.includes(this.tainanSearch) ||
                         item.district.includes(this.tainanSearch) 
                     );
-                    
+                    const districtMatch = (
+                        this.selectedDistricts.length === 0 || // 如果没有选择地区，返回true，表示匹配所有地区
+                        this.selectedDistricts.includes(item.district) // 如果选择了地区，只返回匹配选择地区的景点
+                    );
+                    // 返回搜索匹配和地区匹配都为true的景点
+                    return searchMatch && districtMatch;
                 })
             }
         },
@@ -741,16 +746,15 @@ export default{
     <div class="leftArea">
         <!-- 綁定json檔中的districts，將地址前都附上多選框 -->
         <!-- 利用v-for來遍歷districts  -->
+        <p>縣市</p>
         <div class="checkArea" v-for="district in districts" :key="district">
             <!-- 並附上複選框 -->
             <!-- 每個複選框接有一個v-model==>也就是，將資訊綁定到上面，
             當複選框被選中或取消時,modelCheck都會改變
              -->
             <label for="checkbox">{{ district }}</label>
-            <input class="checkbox" id="'checkbox-'+district" type="checkbox" v-model="modelCheck" :value="district" name="">
+            <input class="checkbox" id="'checkbox-'+district" type="checkbox" v-model="selectedDistricts" :value="district" name="">
         </div>
-        <!-- 設定一個按鈕，如果勾選框勾選完成後，可改變景點資訊 -->
-        <button type="submit" @click="checkDistrict">提交</button>
     </div>
 
 <div class="bigArea">
