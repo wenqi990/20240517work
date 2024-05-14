@@ -15,10 +15,10 @@ export default{
     <div class="headerArea">
       <img src="/public/imags/活動/location.png" alt="" width="50px">
     <RouterLink class="routerItem" to="/">Home</RouterLink>
-    <RouterLink class="routerItem" to="/hotel">Hotel</RouterLink>
-    <RouterLink class="routerItem" to="/Attractions">Attractions</RouterLink>
-    <RouterLink class="routerItem" to="/TainanFood">Food</RouterLink>
-    <RouterLink class="routerItem" to="/Activity">Activity</RouterLink>
+    <RouterLink class="routerItem" to="/hotel">住宿</RouterLink>
+    <RouterLink class="routerItem" to="/Attractions">景點</RouterLink>
+    <RouterLink class="routerItem" to="/TainanFood">食物</RouterLink>
+    <RouterLink class="routerItem" to="/Activity">活動</RouterLink>
     <!-- <RouterLink class="routerItem" to="/Footer">Footer</RouterLink> -->
     <!-- <RouterLink class="routerItem" to="/Map">Map</RouterLink> -->
     <div class="search">
