@@ -584,11 +584,15 @@ export default{
             categorys:[],
             categoryCheck:[],
             selectCategory:[],
+
+
+            
         }
     },
     // =========================================================
     mounted(){
         this.tainan();
+        this.startSlideshow();
     },
     // =========================================================
     methods:{
@@ -707,7 +711,8 @@ export default{
             this.categoryCheck=[...this.selectCategory];
             this.filteredAtt();
             // console.log(this.selectCategory);
-        }
+        },
+        
     },
 // =======================================================
 /**computed:計算屬性，用於
@@ -775,78 +780,81 @@ export default{
 
 
 <template>
-<div class="big">   
 
-    <div class="leftArea">
-        <!-- 搜索 -->
-        <!-- 逐步解析:
-            1、lazy:在更新數據時使用，用於"輸入時，值並不會立馬更新"(需要特定按鈕才會開始更新"例如enter")
-            2、trim:自動刪除值的前後空格
-            @:做監聽事件
-            3、@input=""  :方法中做監聽，也就是輸入時做searchAll這個涵式
-            4、@clear=""  :clear是自訂義事件，指清除...，這邊再次做確定(清除搜索結果或重置搜索狀態=>讓她確保可以A時顯示資訊)
 
-            搜索欄只設定可搜索景點名稱和地址
-        -->
-        <input class="searchArea" id="searchArea" v-model.lazy.trim="tainanSearch" @input="searchAll"  @clear="cancelSearch" type="search" placeholder="請輸入欲搜索景點(至少兩個字)">
-        <!-- 綁定json檔中的districts，將地址前都附上多選框 -->
-        <!-- 利用v-for來遍歷districts  -->
-        <p class="textP">縣市:</p>
-        <div class="checkArea" v-for="district in districts" :key="district">
-            <!-- 並附上複選框 -->
-            <!-- 每個複選框接有一個v-model==>也就是，將資訊綁定到上面，
-            當複選框被選中或取消時,modelCheck都會改變
-             -->
-            <label :for="'checkbox-' + district">{{ district }}</label>
-            <input class="checkbox" id="'checkbox-'+district" type="checkbox" v-model="selectedDistricts" :value="district" name="">
+
+    <div class="big">  
+
+        <div class="leftArea">
+            <!-- 搜索 -->
+            <!-- 逐步解析:
+                1、lazy:在更新數據時使用，用於"輸入時，值並不會立馬更新"(需要特定按鈕才會開始更新"例如enter")
+                2、trim:自動刪除值的前後空格
+                @:做監聽事件
+                3、@input=""  :方法中做監聽，也就是輸入時做searchAll這個涵式
+                4、@clear=""  :clear是自訂義事件，指清除...，這邊再次做確定(清除搜索結果或重置搜索狀態=>讓她確保可以A時顯示資訊)
+
+                搜索欄只設定可搜索景點名稱和地址
+            -->
+            <input class="searchArea" id="searchArea" v-model.lazy.trim="tainanSearch" @input="searchAll"  @clear="cancelSearch" type="search" placeholder="請輸入欲搜索景點(至少兩個字)">
+            <!-- 綁定json檔中的districts，將地址前都附上多選框 -->
+            <!-- 利用v-for來遍歷districts  -->
+            <p class="textP">縣市:</p>
+            <div class="checkArea" v-for="district in districts" :key="district">
+                <!-- 並附上複選框 -->
+                <!-- 每個複選框接有一個v-model==>也就是，將資訊綁定到上面，
+                當複選框被選中或取消時,modelCheck都會改變
+                -->
+                <label  :for="'checkbox-' + district">{{ district }}</label>
+                <input class="checkbox checkboxText" id="'checkbox-'+district" type="checkbox" v-model="selectedDistricts" :value="district" name="">
+            </div>
+
+
+            <p class="textP">活動類型:</p>
+            <div class="checkArea" v-for="category in categorys" :key="category">
+                <label  :for="'checkbox2-' + category">{{ category }}</label>
+                <input class="checkbox2 " id="'checkbox2-'+district" type="checkbox" v-model="selectCategory" :value="category" name="">
+            </div>
         </div>
 
+        <div class="rightArea">
 
-        <p class="textP">活動類型:</p>
-        <div class="checkArea" v-for="category in categorys" :key="category">
-            <label :for="'checkbox2-' + category">{{ category }}</label>
-            <input class="checkbox2" id="'checkbox2-'+district" type="checkbox" v-model="selectCategory" :value="category" name="">
+            <!-- 景點(圖片+景點資訊) -->
+            <!-- 如果搜索時，顯示:圖片+景點名稱+地址+電話 -->
+            <!-- 如果未搜索時，顯示全部 -->
+            <div class="attractions"  v-for="(item,index) in filteredAtt" v-show="searchVshow && page(index)" :key="item.id">
+
+                <div class="attractionsImg"  >
+                    <img class="imgItem"  v-bind:src="item.imagePath" alt='tainanImg'>
+                </div>
+                <!-- 顯示我搜索的資料 -->
+                <!-- 使用v-show，如果輸入框有輸入文字，則"只"出現"符合"的景點的資訊 -->
+                <!-- 如果輸入框未輸入文字，則出現"所有"景點的資訊 -->
+                <div class="attractionsText" >
+                    <div class="attractionsName">{{ item.name }}</div>
+                    <div class="attractionsAddress">地址: {{ item.address }}</div>
+                    <div class="attractionsTel">電話: {{ item.tel }}</div>
+                </div>
+
+            </div>
+
+
+            <!-- 加入上下按鈕 -->
+            <div class="buttonArea">
+                <button class="buttonPage" @click="firstPage" >第一頁</button>
+                <button class="buttonPage" @click="prevPage" >上一頁</button>
+                <select v-model="selectedPage" @change="updateSelectedPage">
+                    <option v-for="page in totalPagesArray" :value="page">{{ page }}</option>
+                </select>
+                <button class="buttonPage" @click="nextPage">下一頁</button>
+                <button class="buttonPage" @click="lastPage">最後一頁</button>
+            </div>  
         </div>
     </div>
 
-    <div class="rightArea">
-
-        <!-- 景點(圖片+景點資訊) -->
-        <!-- 如果搜索時，顯示:圖片+景點名稱+地址+電話 -->
-        <!-- 如果未搜索時，顯示全部 -->
-        <div class="attractions"  v-for="(item,index) in filteredAtt" v-show="searchVshow && page(index)" :key="item.id">
-
-            <div class="attractionsImg"  >
-                <img class="imgItem"  v-bind:src="item.imagePath" alt='tainanImg'>
-            </div>
-            <!-- 顯示我搜索的資料 -->
-            <!-- 使用v-show，如果輸入框有輸入文字，則"只"出現"符合"的景點的資訊 -->
-            <!-- 如果輸入框未輸入文字，則出現"所有"景點的資訊 -->
-            <div class="attractionsText" >
-                <div class="attractionsName">{{ item.name }}</div>
-                <div class="attractionsAddress">地址: {{ item.address }}</div>
-                <div class="attractionsTel">電話: {{ item.tel }}</div>
-            </div>
-
-        </div>
-
-
-        <!-- 加入上下按鈕 -->
-        <div class="buttonArea">
-            <button class="buttonPage" @click="firstPage" >第一頁</button>
-            <button class="buttonPage" @click="prevPage" >上一頁</button>
-            <select v-model="selectedPage" @change="updateSelectedPage">
-                <option v-for="page in totalPagesArray" :value="page">{{ page }}</option>
-            </select>
-            <button class="buttonPage" @click="nextPage">下一頁</button>
-            <button class="buttonPage" @click="lastPage">最後一頁</button>
-        </div>  
+    <div class="bg">
+    <img src="/public/imags/景點類圖片/20220929215654_71.jpg" style="width: 100dvw;height: 100dvh;opacity: 5%;">
     </div>
-</div>
-
-<div class="bg">
-  <img src="/public/imags/景點類圖片/20220929215654_71.jpg" style="width: 100dvw;height: 100dvh;opacity: 5%;">
-</div>
 
 </template>
 
@@ -861,6 +869,8 @@ export default{
         width: 100dvw;
     }
 }
+
+
 
 .big{
     display: flex;
@@ -877,11 +887,12 @@ export default{
     margin-left: 1%;
 
     .searchArea{
-        width: 100%;
+        width: 94%;
         height: 5dvh;
         margin-top: 5px;
         border-radius: 5px;
-        font-size: 24px;
+        font-size: 20px;
+        margin-left: 2%;
     }
 
     .textP{
@@ -890,6 +901,11 @@ export default{
         font-size: 20px;
         font-weight: 100px;
         margin-top: 1%;
+        margin-left: 1%;
+    }
+
+    .checkArea{
+        margin-left: 1%;
     }
 }
 
