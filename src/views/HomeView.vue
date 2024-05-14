@@ -128,10 +128,10 @@ import Footer from '../views/Footer.vue'
 
 
     <div class="sixth area">
-      <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" alt="">
+      <img src="/public/imags/首頁/靡生.webp" alt="">
       <div class="sixthText">
           <h1>讓我們一起嗨放旅宿</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
+          <p>老宅改建的特色民宿「靡生」，以波希米亞風格為主题，巧妙融合現代元素，一入門就能聞到淡淡的佛手柑清香，洋溢著滿滿的異國風情。</p>
           <button class="btn btn-primary">所有旅宿</button> 
       </div>
   </div>
@@ -140,30 +140,30 @@ import Footer from '../views/Footer.vue'
       <h1>Title</h1>
         <div class="cradArea">
             <div class="card">
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+                <img src="/public/imags/首頁/福爾摩沙遊艇酒店.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 290px;height: 200px;">
                 <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
+                  <p class="card-text">全台唯一擁有「遊艇碼頭」的酒店，可眺望熱蘭遮城，並提供饕客級的美食。</p>
                   <a href="#" class="btn btn-primary">XXXXXX</a>
                 </div>
               </div>
             <div class="card" >
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+                <img src="/public/imags/首頁/康橋慢旅.webp" class="card-img-top" alt="卡片" style="object-fit: cover;width: 290px;height: 200px;">
                 <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
+                  <p class="card-text">位於中西區新開幕的康橋慢旅，全天提供自助吧與自助洗衣，為高CP值的最佳選擇。</p>
                   <a href="#" class="btn btn-primary">XXXXXXX</a>
                 </div>
               </div>
             <div class="card" >
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+                <img src="/public/imags/首頁/友愛街旅館.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 290px;height: 200px;">
                 <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
+                  <p class="card-text">坐落在台南美術館旁巷內，位於台南市南區的友愛街旅館，是「工業風設計旅店」也是「青年旅舍」。</p>
                   <a href="#" class="btn btn-primary">XXXXXX</a>
                 </div>
               </div>
               <div class="card" >
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+                <img src="/public/imags/首頁/天下南隅.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 290px;height: 200px;">
                 <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
+                  <p class="card-text">老字號飯店經過重新改装，改名天下南隅，打造當代時髦新旅宿，是台南市距離赤崁樓最近的飯店。</p>
                   <a href="#" class="btn btn-primary">XXXXXX</a>
                 </div>
               </div>
