@@ -87,44 +87,45 @@ import Footer from '../views/Footer.vue'
       <img src="/public/imags/首頁/奇美博物館.jpg" alt="">
       <div class="fourthText">
           <h1>讓我們一起嗨放景點</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
+          <p>奇美博物館由台灣企業家「奇美集團創辦人」許文龍先生所設立，為全台最大的私人博物館，主要蒐藏有西洋藝術、樂器、兵器、自然史等。</p>
           <button class="btn btn-primary">所有景點</button> 
       </div>
   </div>
   
   <div class="fifth area">
-      <h1>Title</h1>
-        <div class="cradArea">
-            <div class="card">
-                <img src="/public/imags/首頁/鹽田.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
-                <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
-                  <a href="#" class="btn btn-primary">XXXXXX</a>
-                </div>
-              </div>
-            <div class="card" >
-                <img src="/public/imags/首頁/漁光島.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
-                <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
-                  <a href="#" class="btn btn-primary">XXXXXXX</a>
-                </div>
-              </div>
-            <div class="card" >
-                <img src="/public/imags/首頁/藍晒圖.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
-                <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
-                  <a href="#" class="btn btn-primary">XXXXXX</a>
-                </div>
-              </div>
-              <div class="card" >
-                <img src="/public/imags/首頁/大魚的祝福.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
-                <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
-                  <a href="#" class="btn btn-primary">XXXXXX</a>
-                </div>
-              </div>
+    <h1>Title</h1>
+    <div class="cradArea">
+        <div class="card">
+            <img src="/public/imags/首頁/鹽田.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 290px;height: 200px;">
+            <div class="card-body">
+                <p class="card-text">井仔腳瓦盤鹽田是台南北門的第一座鹽田，也是現存最古老的瓦盤鹽田遺址。</p>
+                <a href="#" class="btn btn-primary">XXXXXX</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/public/imags/首頁/漁光島.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 290px;height: 200px;">
+            <div class="card-body">
+                <p class="card-text">漁光島座落於台南市安平區，過去是漁民活動的場所，目前可堪稱為台南居民的海上後花園。</p>
+                <a href="#" class="btn btn-primary">XXXXXXX</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/public/imags/首頁/藍晒圖.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 290px;height: 200px;">
+            <div class="card-body">
+                <p class="card-text">藍晒圖文創園區原為舊司法宿舍群，保留舊有的日式宿舍，成為文創產業的新聚落。</p>
+                <a href="#" class="btn btn-primary">XXXXXX</a>
+            </div>
+        </div>
+        <div class="card">
+            <img src="/public/imags/首頁/大魚的祝福.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 290px;height: 200px;">
+            <div class="card-body">
+                <p class="card-text">「大魚的祝福」座落於臺南安平海濱歷史公園內，是臺灣高規格的工藝展現，也成為必訪打卡新熱點。</p>
+                <a href="#" class="btn btn-primary">XXXXXX</a>
+            </div>
         </div>
     </div>
+</div>
+
 
     <div class="sixth area">
       <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" alt="">
