@@ -9,463 +9,553 @@ import Footer from '../views/Footer.vue'
     </div>
   <img src="/public/imags/Hotel img/台南住宿.jpg" style="width: 100%;height: 80dvh;">
     <div class="about">
+    <img src="/public/imags/景點類圖片/南鯤鯓代天府2.jpg">
   </div>
 
+  <!-- 輪播圖 -->
+  <div class="CarouselArea">
+    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active"
+          aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1"
+          aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2"
+          aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="3"
+          aria-label="Slide 4"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="4"
+          aria-label="Slide 5"></button>
+        <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="5"
+          aria-label="Slide 6"></button>
+      </div>
+
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img src="#" class="d-block w-100" alt="...">
+        </div>
+        <div class="carousel-item">
+          <img src="#" class="d-block w-100" alt="114全中運在台南">
+        </div>
+        <div class="carousel-item">
+          <img src="#" class="d-block w-100" alt="一路吃透透">
+        </div>
+        <div class="carousel-item">
+          <img src="#" class="d-block w-100" alt="台南宗教藝術">
+        </div>
+        <div class="carousel-item">
+          <img src="#" class="d-block w-100" alt="台南老饕">
+        </div>
+        <div class="carousel-item">
+          <img src="#" class="d-block w-100" alt="台南邀請您">
+        </div>
+        <div class="carousel-item">
+          <img src="#" class="d-block w-100" alt="台南香料年">
+        </div>
+      </div>
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+        data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+  <!-- <img src="/public/imags/Hotel img/台南住宿.jpg" style="width: 100%;height: 80dvh;"> -->
+  <div class="about">
+  </div>
+
+  <!-- icon 圖片區 -->
   <div class="icon">
-  <div class="info-carousel">
-    <div class="info-box" style="--wd-col-lg:4;--wd-col-md:4;--wd-col-sm:2;--wd-gap-lg:30px;--wd-gap-sm:10px;">
-      <div class="info-item active">
-        <img src="https://havefunday.com/wp-content/uploads/2023/06/400X400-icon_全台美食-150x150.png" alt="美食分享">
-        <h4>美食分享</h4>
-        <a href="#" aria-label="Infobox link"></a>
-      </div>
-      <div class="info-item">
-        <img src="https://havefunday.com/wp-content/uploads/2023/06/400X400-icon_景點-150x150.png" alt="旅遊景點">
-        <h4>旅遊景點</h4>
-        <a href="#" aria-label="Infobox link"></a>
-      </div>
-      <div class="info-item">
-        <img src="https://havefunday.com/wp-content/uploads/2023/07/400X400-icon_別墅-150x150.webp" alt="住宿推薦">
-        <h4>住宿推薦</h4>
-        <a href="#" aria-label="Infobox link"></a>
+    <div class="info-carousel">
+      <div class="info-box" style="--wd-col-lg:4;--wd-col-md:4;--wd-col-sm:2;--wd-gap-lg:30px;--wd-gap-sm:10px;">
+        <div class="info-item active">
+          <a href="#" aria-label="Infobox link"><img
+              src="https://havefunday.com/wp-content/uploads/2023/06/400X400-icon_全台美食-150x150.png" alt="美食分享"></a>
+          <h4>美食分享</h4>
+        </div>
+        <div class="info-item">
+          <a href="http://localhost:5173/Attractions" aria-label="Infobox link"><img
+              src="https://havefunday.com/wp-content/uploads/2023/06/400X400-icon_景點-150x150.png" alt="旅遊景點"></a>
+          <h4>旅遊景點</h4>
+        </div>
+        <div class="info-item">
+          <a href="http://localhost:5173/hotel" aria-label="Infobox link"><img
+              src="https://havefunday.com/wp-content/uploads/2023/07/400X400-icon_別墅-150x150.webp" alt="住宿推薦"></a>
+          <h4>住宿推薦</h4>
+        </div>
       </div>
     </div>
   </div>
-</div>
 
-<div class="mapBox">
-  <Map></Map>
-</div>
+  <div class="mapBox">
+    <Map></Map>
+  </div>
 
   <div class="second area">
-        <div class="secondText">
-            <h5>讓我們一起嗨放美食</h5>
-            <p>白糖粿，據說是南方才有的特殊甜食。源自福建漳泉的習慣，南部人會在七夕用白糖粿拜七娘媽(織女)求好姻緣習俗，因此深受女孩喜愛！炸白糖粿時候，一定要在粿上按個凹槽，老人家說，那是用來承裝織女的眼淚。白糖粿其實就是把粿油炸後滾糖粉製成，花生、芝麻是更多趣味變化的做法。</p>
-            <div>
-    <!-- //bootstrap 效果 -->
-    <button class="btn btn-primary">所有美食</button> 
-  </div>
-        </div>
-        <img src="/public/imags/首頁/白糖粿.jpg" alt="圖片" style="object-fit: cover;">
-    </div>
-
-    <div class="third area">
-      <h1>推薦美食</h1>
-        <div class="cradArea">
-            <div class="card">
-                <img src="/public/imags/首頁/棺材板.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 279px;height: 200px;">
-                <div class="card-body">
-                  <p class="card-text">內餡也改良為海鮮、玉米火腿、雞肉等西式食材，成為台南著名的小吃之一</p>
-                  <a href="#" class="btn btn-primary">XXXXXX</a>
-                </div>
-              </div>
-            <div class="card" >
-                <img src="/public/imags/首頁/牛肉湯.webp" class="card-img-top" alt="卡片" style="object-fit: cover;width: 279px;height: 200px;">
-                <div class="card-body">
-                  <p class="card-text">台南的善化是最大規模的屠宰場之一，所以台南的牛肉湯就開始蓬勃發展，並在媒體與政府的宣傳影響下，逐漸成為著名的料理</p>
-                  <a href="#" class="btn btn-primary">XXXXXXX</a>
-                </div>
-              </div>
-            <div class="card" >
-                <img src="/public/imags/首頁/蛋黃.webp" class="card-img-top" alt="卡片" style="object-fit: cover;width: 279px;height: 200px;">
-                <div class="card-body">
-                  <p class="card-text">Q彈的白米飯，淋上鹹香的豬油醬油，搭上半熟荷包蛋，儘管沒有豐富配菜，也會一碗接著一碗</p>
-                  <a href="#" class="btn btn-primary">XXXXXX</a>
-                </div>
-              </div>
-              <div class="card" >
-                <img src="/public/imags/首頁/豆腐冰.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 279px;height: 200px;">
-                <div class="card-body">
-                  <p class="card-text">形似豆腐而得名，味甜，清爽，略帶杏仁味，一種與之類似的歐洲甜點是法式奶凍</p>
-                  <a href="#" class="btn btn-primary">XXXXXX</a>
-                </div>
-              </div>
-        </div>
-    </div>
-
-    <div class="fourth area">
-      <img src="/public/imags/首頁/奇美博物館.jpg" alt="">
-      <div class="fourthText">
-          <h1>讓我們一起嗨放景點</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
-          <button class="btn btn-primary">所有景點</button> 
+    <div class="secondText">
+      <h5>讓我們一起嗨放美食</h5>
+      <p>
+        白糖粿，據說是南方才有的特殊甜食。源自福建漳泉的習慣，南部人會在七夕用白糖粿拜七娘媽(織女)求好姻緣習俗，因此深受女孩喜愛！炸白糖粿時候，一定要在粿上按個凹槽，老人家說，那是用來承裝織女的眼淚。白糖粿其實就是把粿油炸後滾糖粉製成，花生、芝麻是更多趣味變化的做法。
+      </p>
+      <div>
+        <!-- //bootstrap 效果 -->
+        <button class="btn btn-primary">所有美食</button>
       </div>
+    </div>
+    <img src="/public/imags/首頁/白糖粿.jpg" alt="圖片" style="object-fit: cover;">
   </div>
-  
+
+  <div class="third area">
+    <h1>推薦美食</h1>
+    <div class="cradArea">
+      <div class="card">
+        <img src="/public/imags/首頁/棺材板.jpg" class="card-img-top" alt="卡片"
+          style="object-fit: cover;width: 279px;height: 200px;">
+        <div class="card-body">
+          <p class="card-text">內餡也改良為海鮮、玉米火腿、雞肉等西式食材，成為台南著名的小吃之一</p>
+          <a href="#" class="btn btn-primary">XXXXXX</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/public/imags/首頁/牛肉湯.webp" class="card-img-top" alt="卡片"
+          style="object-fit: cover;width: 279px;height: 200px;">
+        <div class="card-body">
+          <p class="card-text">台南的善化是最大規模的屠宰場之一，所以台南的牛肉湯就開始蓬勃發展，並在媒體與政府的宣傳影響下，逐漸成為著名的料理</p>
+          <a href="#" class="btn btn-primary">XXXXXXX</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/public/imags/首頁/蛋黃.webp" class="card-img-top" alt="卡片"
+          style="object-fit: cover;width: 279px;height: 200px;">
+        <div class="card-body">
+          <p class="card-text">Q彈的白米飯，淋上鹹香的豬油醬油，搭上半熟荷包蛋，儘管沒有豐富配菜，也會一碗接著一碗</p>
+          <a href="#" class="btn btn-primary">XXXXXX</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/public/imags/首頁/豆腐冰.jpg" class="card-img-top" alt="卡片"
+          style="object-fit: cover;width: 279px;height: 200px;">
+        <div class="card-body">
+          <p class="card-text">形似豆腐而得名，味甜，清爽，略帶杏仁味，一種與之類似的歐洲甜點是法式奶凍</p>
+          <a href="#" class="btn btn-primary">XXXXXX</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fourth area">
+    <img src="/public/imags/首頁/奇美博物館.jpg" alt="">
+    <div class="fourthText">
+      <h1>讓我們一起嗨放景點</h1>
+      <p>奇美博物館由台灣企業家「奇美集團創辦人」許文龍先生所設立，為全台最大的私人博物館，主要蒐藏有西洋藝術、樂器、兵器、自然史等。</p>
+      <button class="btn btn-primary">所有景點</button>
+    </div>
+  </div>
+
   <div class="fifth area">
-      <h1>Title</h1>
-        <div class="cradArea">
-            <div class="card">
-                <img src="/public/imags/首頁/鹽田.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
-                <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
-                  <a href="#" class="btn btn-primary">XXXXXX</a>
-                </div>
-              </div>
-            <div class="card" >
-                <img src="/public/imags/首頁/漁光島.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
-                <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
-                  <a href="#" class="btn btn-primary">XXXXXXX</a>
-                </div>
-              </div>
-            <div class="card" >
-                <img src="/public/imags/首頁/藍晒圖.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
-                <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
-                  <a href="#" class="btn btn-primary">XXXXXX</a>
-                </div>
-              </div>
-              <div class="card" >
-                <img src="/public/imags/首頁/大魚的祝福.jpg" class="card-img-top" alt="卡片" style="object-fit: cover;width: 270px;height: 200px;">
-                <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
-                  <a href="#" class="btn btn-primary">XXXXXX</a>
-                </div>
-              </div>
+    <h1>Title</h1>
+    <div class="cradArea">
+      <div class="card">
+        <img src="/public/imags/首頁/鹽田.jpg" class="card-img-top" alt="卡片"
+          style="object-fit: cover;width: 290px;height: 200px;">
+        <div class="card-body">
+          <p class="card-text">井仔腳瓦盤鹽田是台南北門的第一座鹽田，也是現存最古老的瓦盤鹽田遺址。</p>
+          <a href="#" class="btn btn-primary">XXXXXX</a>
         </div>
-    </div>
-
-    <div class="sixth area">
-      <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" alt="">
-      <div class="sixthText">
-          <h1>讓我們一起嗨放旅宿</h1>
-          <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
-          <button class="btn btn-primary">所有旅宿</button> 
       </div>
+      <div class="card">
+        <img src="/public/imags/首頁/漁光島.jpg" class="card-img-top" alt="卡片"
+          style="object-fit: cover;width: 290px;height: 200px;">
+        <div class="card-body">
+          <p class="card-text">漁光島座落於台南市安平區，過去是漁民活動的場所，目前可堪稱為台南居民的海上後花園。</p>
+          <a href="#" class="btn btn-primary">XXXXXXX</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/public/imags/首頁/藍晒圖.jpg" class="card-img-top" alt="卡片"
+          style="object-fit: cover;width: 290px;height: 200px;">
+        <div class="card-body">
+          <p class="card-text">藍晒圖文創園區原為舊司法宿舍群，保留舊有的日式宿舍，成為文創產業的新聚落。</p>
+          <a href="#" class="btn btn-primary">XXXXXX</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/public/imags/首頁/大魚的祝福.jpg" class="card-img-top" alt="卡片"
+          style="object-fit: cover;width: 290px;height: 200px;">
+        <div class="card-body">
+          <p class="card-text">「大魚的祝福」座落於臺南安平海濱歷史公園內，是臺灣高規格的工藝展現，也成為必訪打卡新熱點。</p>
+          <a href="#" class="btn btn-primary">XXXXXX</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <div class="sixth area">
+    <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" alt="">
+    <div class="sixthText">
+      <h1>讓我們一起嗨放旅宿</h1>
+      <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid
+        consequuntur veritatis.</p>
+      <button class="btn btn-primary">所有旅宿</button>
+    </div>
   </div>
 
   <div class="seventh area">
-      <h1>Title</h1>
-        <div class="cradArea">
-            <div class="card">
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
-                <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
-                  <a href="#" class="btn btn-primary">XXXXXX</a>
-                </div>
-              </div>
-            <div class="card" >
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
-                <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
-                  <a href="#" class="btn btn-primary">XXXXXXX</a>
-                </div>
-              </div>
-            <div class="card" >
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
-                <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
-                  <a href="#" class="btn btn-primary">XXXXXX</a>
-                </div>
-              </div>
-              <div class="card" >
-                <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
-                <div class="card-body">
-                  <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae dignissimos aliquid consequuntur veritatis.</p>
-                  <a href="#" class="btn btn-primary">XXXXXX</a>
-                </div>
-              </div>
+    <h1>Title</h1>
+    <div class="cradArea">
+      <div class="card">
+        <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+        <div class="card-body">
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae
+            dignissimos aliquid consequuntur veritatis.</p>
+          <a href="#" class="btn btn-primary">XXXXXX</a>
         </div>
+      </div>
+      <div class="card">
+        <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+        <div class="card-body">
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae
+            dignissimos aliquid consequuntur veritatis.</p>
+          <a href="#" class="btn btn-primary">XXXXXXX</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+        <div class="card-body">
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae
+            dignissimos aliquid consequuntur veritatis.</p>
+          <a href="#" class="btn btn-primary">XXXXXX</a>
+        </div>
+      </div>
+      <div class="card">
+        <img src="/public/imags/景點類圖片/南鯤鯓代天府.jpg" class="card-img-top" alt="卡片">
+        <div class="card-body">
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Consequatur repudiandae
+            dignissimos aliquid consequuntur veritatis.</p>
+          <a href="#" class="btn btn-primary">XXXXXX</a>
+        </div>
+      </div>
     </div>
-    <Footer></Footer>
+  </div>
+  <Footer></Footer>
 </template>
 
 <style scoped lang="scss">
-
 .icon {
   display: flex;
   background-color: #ffffff;
-  justify-content: center; 
+  justify-content: center;
 }
 
-.info-carousel { //設定寬度
+.info-carousel {
+  //設定寬度
 }
 
 .info-box {
   margin-top: 100px;
   display: flex;
-  gap: var(--wd-gap-lg); 
+  gap: var(--wd-gap-lg);
 }
 
 .info-item {
-  flex: 1; 
-  text-align: center; 
+  flex: 1;
+  text-align: center;
 }
 
 .info-item img {
-  max-width: 100%; 
+  max-width: 100%;
 }
 
 h4 {
-  margin-top: 10px; 
-  margin-bottom: 0; 
+  margin-top: 10px;
+  margin-bottom: 0;
 }
 
-.mapBox{
+.mapBox {
   background-color: #ffffff;
 }
 
-.bg{
+.bg {
   position: fixed;
   bottom: 0;
   z-index: -999;
-  img{
+
+  img {
     width: 100dvw;
-    
+
   }
 }
 
 
 
-.second{
-    height: 65dvh;
-    justify-content: space-between;
-    align-items: center;
-    display: flex;
-    background-color: #ffffff;
-    // cursor:url(./素材/ae7a5-03aq0-001.ico),auto ;
+.second {
+  height: 65dvh;
+  justify-content: space-between;
+  align-items: center;
+  display: flex;
+  background-color: #ffffff;
+  // cursor:url(./素材/ae7a5-03aq0-001.ico),auto ;
 
-    .secondText {
-        width: 40%;
-        height: 100%;
-        padding-top: 5%;
-        padding-left: 3%;
-        color: black;
-        
-        h1{
-            padding:5% 3%;
-            font-size: 7dvh;
-            
-         
-        }
+  .secondText {
+    width: 40%;
+    height: 100%;
+    padding-top: 5%;
+    padding-left: 3%;
+    color: black;
 
-    
+    h1 {
+      padding: 5% 3%;
+      font-size: 7dvh;
+
+
     }
 
 
+  }
 
-    img{
-      margin-right: 100px;
-        // padding-right: 5%;
-        width: 520px;
-        height: 420px;
-        border-radius: 20%;
-        transition: 0.5s;
-        // 鼠標移到按鈕時放大
-        &:hover{
-            scale: 1.05;
-        }
-        // 鼠標移到按鈕時縮小
-        &:active{
-            scale: 0.95;
-        }
+
+
+  img {
+    margin-right: 100px;
+    // padding-right: 5%;
+    width: 520px;
+    height: 420px;
+    border-radius: 20%;
+    transition: 0.5s;
+
+    // 鼠標移到按鈕時放大
+    &:hover {
+      scale: 1.05;
     }
+
+    // 鼠標移到按鈕時縮小
+    &:active {
+      scale: 0.95;
+    }
+  }
 }
 
-.third{
+.third {
   margin-top: 5%;
-    height: 75dvh;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ffffff;
-    text-align: center;
+  height: 75dvh;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  text-align: center;
 
-    .cradArea{
-        margin-top: 2%;
-        width: 80%;
-        height: 80%;
-        margin-left: 10%;
-        display: flex;
-        justify-content: space-around;
-        position: relative;
-        
-        .card{
-          margin: 1%;
-            width: 30%;
-            height: 90%;
-            box-shadow: 5px 5px 5px rgb(108, 107, 107);
-            transition: 0.5s;
-        // 鼠標移到按鈕時放大
-        &:hover{
-            scale: 1.05;
-        }
-        // 鼠標移到按鈕時縮小
-        &:active{
-            scale: 0.95;
-        }
-            
-            .btn{
-                position: absolute;
-                left: 27%;
-                bottom: 5%;
-                background: rgb(49, 49, 49);
-                border: none;
-                width: 45%;
-                font-size: 18px;
-            }
-        }
-    }
-}
-
-.fourth{
-    height: 70dvh;
-    justify-content: space-between;
-    margin-top: 10%;
+  .cradArea {
+    margin-top: 2%;
+    width: 80%;
+    height: 80%;
+    margin-left: 10%;
     display: flex;
-    background-color: #ffffff;
-    // cursor:url(/滑鼠標.ico),auto ;
-    .fourthText{
-        width: 50%;
-        height: 500.10px;
-        background:#ffffff;
-        font-size: 25px;
-        padding: 5% 4%;
-        
+    justify-content: space-around;
+    position: relative;
+
+    .card {
+      margin: 1%;
+      width: 30%;
+      height: 90%;
+      box-shadow: 5px 5px 5px rgb(108, 107, 107);
+      transition: 0.5s;
+
+      // 鼠標移到按鈕時放大
+      &:hover {
+        scale: 1.05;
+      }
+
+      // 鼠標移到按鈕時縮小
+      &:active {
+        scale: 0.95;
+      }
+
+      .btn {
+        position: absolute;
+        left: 27%;
+        bottom: 5%;
+        background: rgb(49, 49, 49);
+        border: none;
+        width: 45%;
+        font-size: 18px;
+      }
     }
-    
-    img{
-        width: 700px;
-        height: 400.6px;
-        border-radius: 20%;
-        box-shadow: 5px 5px 5px rgb(108, 107, 107);
-        transition: 0.5s;
-        margin-top: 2.5rem;
-            margin-left: 2.5rem;
-        // 鼠標移到按鈕時放大
-        &:hover{
-            scale: 1.05;
-        }
-        // 鼠標移到按鈕時縮小
-        &:active{
-            scale: 0.95;
-        }
-    }
+  }
 }
 
-.fifth{
+.fourth {
+  height: 70dvh;
+  justify-content: space-between;
+  margin-top: 10%;
+  display: flex;
+  background-color: #ffffff;
+
+  // cursor:url(/滑鼠標.ico),auto ;
+  .fourthText {
+    width: 50%;
+    height: 500.10px;
+    background: #ffffff;
+    font-size: 25px;
+    padding: 5% 4%;
+
+  }
+
+  img {
+    width: 700px;
+    height: 400.6px;
+    border-radius: 20%;
+    box-shadow: 5px 5px 5px rgb(108, 107, 107);
+    transition: 0.5s;
+    margin-top: 2.5rem;
+    margin-left: 2.5rem;
+
+    // 鼠標移到按鈕時放大
+    &:hover {
+      scale: 1.05;
+    }
+
+    // 鼠標移到按鈕時縮小
+    &:active {
+      scale: 0.95;
+    }
+  }
+}
+
+.fifth {
   margin-top: 5%;
-    height: 75dvh;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ffffff;
-    text-align: center;
+  height: 75dvh;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  text-align: center;
 
-    .cradArea{
-        margin-top: 2%;
-        width: 80%;
-        height: 80%;
-        margin-left: 10%;
-        display: flex;
-        justify-content: space-around;
-        position: relative;
-        
-        .card{
-          margin: 1%;
-            width: 30%;
-            height: 90%;
-            box-shadow: 5px 5px 5px rgb(108, 107, 107);
-            transition: 0.5s;
-            
-        // 鼠標移到按鈕時放大
-        &:hover{
-            scale: 1.05;
-        }
-        // 鼠標移到按鈕時縮小
-        &:active{
-            scale: 0.95;
-        }
-            
-            .btn{
-                position: absolute;
-                left: 27%;
-                bottom: 5%;
-                background: rgb(49, 49, 49);
-                border: none;
-                width: 45%;
-                font-size: 18px;
-            }
-        }
-    }
-}
-
-.sixth{
-    height: 70dvh;
-    justify-content: space-between;
-    margin-top: 10%;
+  .cradArea {
+    margin-top: 2%;
+    width: 80%;
+    height: 80%;
+    margin-left: 10%;
     display: flex;
-    background-color: #ffffff;
-    // cursor:url(/滑鼠標.ico),auto ;
-    .sixthText{
-        width: 50%;
-        height: 500.10px;
-        background:#ffffff;
-        font-size: 25px;
-        padding: 5% 4%;
-        
+    justify-content: space-around;
+    position: relative;
+
+    .card {
+      margin: 1%;
+      width: 30%;
+      height: 90%;
+      box-shadow: 5px 5px 5px rgb(108, 107, 107);
+      transition: 0.5s;
+
+      // 鼠標移到按鈕時放大
+      &:hover {
+        scale: 1.05;
+      }
+
+      // 鼠標移到按鈕時縮小
+      &:active {
+        scale: 0.95;
+      }
+
+      .btn {
+        position: absolute;
+        left: 27%;
+        bottom: 5%;
+        background: rgb(49, 49, 49);
+        border: none;
+        width: 45%;
+        font-size: 18px;
+      }
     }
-    
-    img{
-        width: 700px;
-        height: 400.6px;
-        border-radius: 20%;
-        box-shadow: 5px 5px 5px rgb(108, 107, 107);
-        transition: 0.5s;
-        // 鼠標移到按鈕時放大
-        margin-top: 25px;
-        margin-left: 25px;
-        &:hover{
-            scale: 1.05;
-        }
-        // 鼠標移到按鈕時縮小
-        &:active{
-            scale: 0.95;
-        }
-    }
+  }
 }
 
-.seventh{
-  margin-top: 5%;
-    height: 75dvh;
-    flex-direction: column;
-    align-items: center;
-    background-color: #ffffff;
-    text-align: center;
+.sixth {
+  height: 70dvh;
+  justify-content: space-between;
+  margin-top: 10%;
+  display: flex;
+  background-color: #ffffff;
 
-    .cradArea{
-        margin-top: 2%;
-        width: 80%;
-        height: 80%;
-        margin-left: 10%;
-        display: flex;
-        justify-content: space-around;
-        position: relative;
-        
-        .card{
-          margin: 1%;
-            width: 30%;
-            height: 90%;
-            box-shadow: 5px 5px 5px rgb(108, 107, 107);
-            transition: 0.5s;
-        // 鼠標移到按鈕時放大
-        &:hover{
-            scale: 1.05;
-        }
-        // 鼠標移到按鈕時縮小
-        &:active{
-            scale: 0.95;
-        }
-            
-            .btn{
-                position: absolute;
-                left: 27%;
-                bottom: 5%;
-                background: rgb(49, 49, 49);
-                border: none;
-                width: 45%;
-                font-size: 18px;
-            }
-        }
+  // cursor:url(/滑鼠標.ico),auto ;
+  .sixthText {
+    width: 50%;
+    height: 500.10px;
+    background: #ffffff;
+    font-size: 25px;
+    padding: 5% 4%;
+
+  }
+
+  img {
+    width: 700px;
+    height: 400.6px;
+    border-radius: 20%;
+    box-shadow: 5px 5px 5px rgb(108, 107, 107);
+    transition: 0.5s;
+    // 鼠標移到按鈕時放大
+    margin-top: 25px;
+    margin-left: 25px;
+
+    &:hover {
+      scale: 1.05;
     }
+
+    // 鼠標移到按鈕時縮小
+    &:active {
+      scale: 0.95;
+    }
+  }
+}
+
+.seventh {
+  margin-top: 5%;
+  height: 75dvh;
+  flex-direction: column;
+  align-items: center;
+  background-color: #ffffff;
+  text-align: center;
+
+  .cradArea {
+    margin-top: 2%;
+    width: 80%;
+    height: 80%;
+    margin-left: 10%;
+    display: flex;
+    justify-content: space-around;
+    position: relative;
+
+    .card {
+      margin: 1%;
+      width: 30%;
+      height: 90%;
+      box-shadow: 5px 5px 5px rgb(108, 107, 107);
+      transition: 0.5s;
+
+      // 鼠標移到按鈕時放大
+      &:hover {
+        scale: 1.05;
+      }
+
+      // 鼠標移到按鈕時縮小
+      &:active {
+        scale: 0.95;
+      }
+
+      .btn {
+        position: absolute;
+        left: 27%;
+        bottom: 5%;
+        background: rgb(49, 49, 49);
+        border: none;
+        width: 45%;
+        font-size: 18px;
+      }
+    }
+  }
 }
 </style>
