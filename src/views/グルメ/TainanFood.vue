@@ -1,106 +1,117 @@
 <script>
 
 export default{
-    components: {
-
-    },
     data(){
-        return{
-            text: `
-          Quis magna Lorem anim amet ipsum do mollit sit cillum voluptate ex nulla
-          tempor. Laborum consequat non elit enim exercitation cillum aliqua
-          consequat id aliqua. Esse ex consectetur mollit voluptate est in duis
-          laboris ad sit ipsum anim Lorem. Incididunt veniam velit elit elit veniam
-          Lorem aliqua quis ullamco deserunt sit enim elit aliqua esse irure. Laborum
-          nisi sit est tempor laborum mollit labore officia laborum excepteur
-          commodo non commodo dolor excepteur commodo. Ipsum fugiat ex est consectetur
-          ipsum commodo tempor sunt in proident.
-        `
-        }
+    return{
+      selectedDistrict: '', 
+      selectedAddress: '', 
+      selectedName: '', 
+      districts: [], 
+      addresses: [], 
+      names: [], 
+      tainanArr: [],
+      selectedShop: null,
+      shopImages: {
+        
+        '和興冰果部': '/imags/food/和興冰果部.jpg',
+        '牧大畜牧場': '/imags/food/牧大畜牧場.jpg',
+        
+      }
+            };
+    },
+    computed: {
+    // 根据选定的店家名称获取相应的图片路径
+    selectedShopImage() {
+      return process.env.BASE_URL + this.shopImages[this.selectedName] || '';
     }
+  },
+    mounted () {
+      this.fetchFoodData();
+      
+    },
+    methods: {
+      fetchFoodData() {
+        fetch('./public/檔案/shops_zh-tw.json')
+        .then((res) => res.json()) 
+        .then((data) => { 
+          if (data && Array.isArray(data)) { 
+            this.tainanArr = data; 
+            this.districts = ['--請選擇--', ...new Set(data.map(item => item.district))];  
+            this.updateDistrictData(this.selectedDistrict); 
+            } else {
+            console.error("Data is not defined or is not an array."); 
+          }
+        })
+        .catch((error) => {
+          console.error("Error fetching hotel data:", error); 
+        });
+        
+    },
+    updateDistrictData(district) {
+      const filteredData = this.tainanArr.filter(item => item.district === district); 
+      this.addresses = filteredData.map(item => item.address); 
+      this.names = filteredData.map(item => item.name);
+    },
+    districtChanged() { 
+      // 地區下拉式選單改變時的方法
+      if (this.selectedDistrict === '--請選擇--') {
+        // 如果選擇了預設值，清空地址和名稱的選擇
+        this.selectedAddress = ''; 
+        this.selectedName = '';
+        this.selectedShop = null;
+      } 
+      this.updateDistrictData(this.selectedDistrict); // 更新地區相關資料
+        },
+    addressChanged() { 
+      // 地址下拉式選單改變時的方法
+      this.selectedAddress = this.$refs.selectAddress.value; // 更新選擇的地址
+      this.selectedName = this.names[this.addresses.indexOf(this.selectedAddress)]; // 根據所選的地址更新所選的名稱
+    },
+    nameChanged() { 
+      // 名稱下拉式選單改變時的方法
+      this.selectedName = this.$refs.selectName.value; // 更新選擇的名稱
+      this.selectedAddress = this.addresses[this.names.indexOf(this.selectedName)]; // 根據所選的名稱更新所選的地址
+      this.selectedShop = this.tainanArr.find(item => item.name === this.selectedName);
+    },
     
+    }
+  }
     
-}
-</script>
+    </script>
 
 <template>
-<div class="head">
-    <h1>熱門美食</h1>
+    <div class="atama">
+      <img src="/public/imags/食物/food.jpg" alt="" width="100%" height="500px">
     </div>
-    <b-container fluid>
-    <b-row>
-      <b-col cols="4">
-        <b-navbar v-b-scrollspy:scrollspy-nested class="flex-column">
-          <b-navbar-brand href="#">Navbar</b-navbar-brand>
-          <b-nav pills vertical>
-            <b-nav-item href="#item-1">Item 1</b-nav-item>
-            <b-nav pills vertical>
-              <b-nav-item class="ml-3 my-1" href="#item-1-1">Item 1-1</b-nav-item>
-              <b-nav-item class="ml-3 my-1" href="#item-1-2">Item 1-2</b-nav-item>
-            </b-nav>
-            <b-nav-item href="#item-2">Item 2</b-nav-item>
-            <b-nav-item href="#item-3">Item 3</b-nav-item>
-            <b-nav pills vertical>
-              <b-nav-item class="ml-3 my-1" href="#item-3-1">Item 3-1</b-nav-item>
-              <b-nav-item class="ml-3 my-1" href="#item-3-2">Item 3-2</b-nav-item>
-            </b-nav>
-          </b-nav>
-        </b-navbar>
-      </b-col>
-
-      <b-col cols="8">
-        <div id="scrollspy-nested" style="position:relative; height:350px; overflow-y:auto">
-          <h4 id="item-1" style="">Item 1</h4>
-          <p>{{ text }}</p>
-          <h5 id="item-1-1" style="">Item 1-1</h5>
-          <p>{{ text }}</p>
-          <h5 id="item-1-2" style="">Item 2-2</h5>
-          <p>{{ text }}</p>
-          <h4 id="item-2" style="">Item 2</h4>
-          <p>{{ text }}</p>
-          <h4 id="item-3" style="">Item 3</h4>
-          <p>{{ text }}</p>
-          <h5 id="item-3-1" style="">Item 3-1</h5>
-          <p>{{ text }}</p>
-          <h5 id="item-3-2" style="">Item 3-2</h5>
-          <p>{{ text }}</p>
-        </div>
-      </b-col>
-    </b-row>
-  </b-container>
+    
+    <div>
+    <select v-model="selectedDistrict" @change="districtChanged" ref="selectDistrict"> 
+      <option v-for="district in districts" :value="district">{{ district }}</option>
+    </select>
+    <select v-model="selectedAddress" @change="addressChanged" ref="selectAddress"> 
+      <option v-for="address in addresses" :value="address">{{ address }}</option>
+    </select>
+    <select v-model="selectedName" @change="nameChanged" ref="selectName"> 
+      <option v-for="name in names" :value="name">{{ name }}</option>
+    </select>
+  </div>
+  
+    <div class="shop">
+      <div v-if="selectedShop" class="shop-item">
+        <img :src="`/imags/food/${selectedShopImage}`" alt="" style="max-width: 200px;">
+      <p>店名: {{ selectedShop.name }}</p>
+      <p>概括: {{ selectedShop.summary }}</p>
+      <p>介紹: {{ selectedShop.introduction }}</p>
+      <p>營業時間: {{ selectedShop.open_time }}</p>
+      <p>訂餐電話: {{ selectedShop.tel }}</p>
+      </div>
+    </div>
+    
 </template>
 
 <style scoped lang="scss">
-
-.head{
-    width: 70%;
-    height: 21dvh;
-    margin: auto;
-    border: 1px solid black
-    
-    
-
-    h1{
-        font-size: 24px;
-        margin: 0 1%;
-        text-decoration: none;
-    }
-    
-}
-.vforArea{
-    width: 1040px;
-    height: 1040px;
-    position: relative;
-    left: 900px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: space-between;
-
-    .vforBlock{
-        width: 320px;
-        height: 330px;
-        background: rgb(250, 122, 1);
-        color: white
-    }
+.shop-image {
+  text-align: center; /* 让图像居中显示 */
+  margin-bottom: 20px; /* 添加一些底部间距 */
 }
 </style>
