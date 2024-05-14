@@ -5,6 +5,10 @@ import Footer from '../views/Footer.vue'
 
 <template>
   <div class="bg">
+        <img src="/public/imags/首頁/背景底圖.svg">
+    </div>
+  <img src="/public/imags/Hotel img/台南住宿.jpg" style="width: 100%;height: 80dvh;">
+    <div class="about">
     <img src="/public/imags/景點類圖片/南鯤鯓代天府2.jpg">
   </div>
 
