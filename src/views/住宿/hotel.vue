@@ -79,6 +79,11 @@ export default {
         addToHistory(item) {
             if (this.historyRecords.length < 5) {
                 this.historyRecords.push(item);
+            } else {
+                // 如果歷史紀錄已滿，則刪除第一個卡片
+                this.historyRecords.shift();
+                // 將新的卡片添加到最後
+                this.historyRecords.push(item);
             }
         },
     },
@@ -173,10 +178,10 @@ export default {
 
     <!-- 歷史紀錄 -->
     <div class="wrapperArea">
-        <div v-for="(record, index) in historyRecords" :key="index" class="card">
-            <img :src="this.photos[index]" class="card-img-top" :alt="record.Name">
+        <div v-for="(item, index) in historyRecords" :key="index" class="card">
+            <img :src="this.photos[index]" class="card-img-top" :alt="item.Name">
             <div class="card-body">
-                <p class="card-text">{{ record.Name }}</p>
+                <p class="card-text">{{ item.Name }}</p>
             </div>
         </div>
     </div>
@@ -201,6 +206,7 @@ export default {
 }
 
 .searchArea {
+    margin-top: 20px;
     display: flex;
     width: 100%;
     height: 9dvh;
@@ -229,7 +235,15 @@ export default {
         margin-top: 3%;
         border-radius: 6px;
         background: rgba(0, 0, 0, 0.789);
+        z-index: 1;
+
+        &:hover {
+            scale: 1.2;
+        }
     }
+
+
+
 
     p {
         // 卡片裡面的文字
@@ -285,14 +299,15 @@ h1 {
     height: 58dvh;
     justify-content: center;
 
+
     .card {
         width: 18rem;
-        height: 16dvh;
+        height: 50dvh;
         line-height: 110px;
         text-align: center;
         background-color: white;
         margin: 3% 1%;
-        border-radius: 12px;
+        border: 2px solid black;
     }
 
     .card-body {
@@ -301,7 +316,11 @@ h1 {
         background: white;
         justify-content: center;
         align-items: center;
-        border: 1px solid black;
+
+    }
+
+    .card-text {
+        font-size: 20px;
     }
 }
 
