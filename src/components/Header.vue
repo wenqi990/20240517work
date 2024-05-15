@@ -11,7 +11,7 @@ export default{
 </script>
 
 <template>
- 
+
     <div class="headerArea">
       <img src="/public/imags/活動/location.png" alt="" width="50px">
     <RouterLink class="routerItem" to="/">Home</RouterLink>

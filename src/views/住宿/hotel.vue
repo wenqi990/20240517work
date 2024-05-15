@@ -1,4 +1,4 @@
-<script >
+<script>
 import Footer from '../../views/Footer.vue';
 
 export default {
@@ -125,13 +125,16 @@ export default {
         },
     },
     components: { Footer },
-    setup(){
-    return {}
+    setup() {
+        return {}
     }
 }
 </script>
 
 <template>
+    <div class="bg">
+        <img src="/public/imags/Hotel img/艾爾登住宿.jpg">
+    </div>
     <div class="pictureArea">
         <img src="https://d3f9k0n15ckvhe.cloudfront.net/wp-content/uploads/2021/10/forest-lake_1440x520.png" alt="台南飯店">
     </div>
@@ -193,7 +196,7 @@ export default {
     </div>
 
     <!-- <div class="footerArea"></div> -->
-    
+
 
     <Footer></Footer>
 </template>
@@ -266,6 +269,7 @@ export default {
 
     .card {
         border: none;
+        background: rgba(255, 255, 255, 0);
     }
 }
 
@@ -331,4 +335,14 @@ h1 {
     }
 }
 
+.bg {
+    position: fixed;
+    bottom: 0;
+    z-index: -999;
+    opacity: 0.8;
+    img {
+        width: 100dvw;
+
+    }
+}
 </style>
