@@ -35,13 +35,15 @@ export default {
                     item.Add.includes('臺南') // 表示對 data.XML_Head.Infos.Info 中的每個項目應用一個過濾器函數。對於每個項目 item，箭頭函數 => 後面的代碼 item.Add.includes('臺南') 表示檢查 item 的 Add 屬性是否包含字符串 '臺南'。如果是，則保留該項目；如果不是，則將其從結果中去除。
                 );
                 // new Set() 是創建 Set 物件的語法。例如，new Set([1, 2, 3, 3, 4, 4, 5]) 會創建一個包含 [1, 2, 3, 4, 5] 的 Set 物件，自動去除了重複的值。
+                // map 方法，該方法會對陣列中的每個元素都調用一次指定的函式，並將每次呼叫的結果組成一個新的陣列返回。
+                // this.tainanArr 陣列中的每個元素都取出 Town 屬性的值，並將這些值組成一個新的陣列返回。
                 this.cities = [...new Set(this.tainanArr.map((item) => item.Town))];
                 this.prices = [...new Set(this.tainanArr.map((item) => item.LowestPrice))];
             });
     },
     methods: {
         cityChanged() {
-            this.selectedCity = this.$refs.selectCity.value;
+            this.selectedCity = this.$refs.selectCity.value; // 這個元素或組件被設置了 ref="selectCity"，所以當程式碼執行時，this.$refs.selectCity 就會返回這個元素或組件，從而可以使用 .value 來取得它的值。
         },
         priceChanged() {
             const city = this.selectedCity;
@@ -142,6 +144,8 @@ export default {
 
     <!-- 篩選欄位 -->
     <div class="searchArea">
+        <!-- v-model 指令將選擇的城市與 selectedCity 變數進行雙向綁定，當選擇改變時，@change 事件會觸發 cityChanged 方法。 -->
+        <!-- @符號是v-on指令的縮寫形式，用於監聽DOM事件並執行對應的事件處理函數。 -->
         <select v-model="selectedCity" @change="cityChanged" ref="selectCity">
             <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
         </select>
