@@ -195,10 +195,14 @@ import Footer from '../views/Footer.vue'
 .info-item {
   flex: 1; 
   text-align: center; 
+  transition: transform 0.3s ease;
 }
 
 .info-item img {
   max-width: 100%; 
+  .info-item:hover {
+  transform: scale(1.1); //滑鼠移入時放大 10%
+}
 }
 
 h4 {
