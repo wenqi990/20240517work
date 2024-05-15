@@ -191,18 +191,24 @@ export default {
 
     <!-- 上一頁 下一頁 -->
     <div class="pagination">
+        <!-- :disabled="currentPage === 1" 用於禁用按鈕，如果當前頁碼等於 1，則此按鈕將被禁用。 -->
+        <!-- 與 == 運算符相比，=== 運算符不會進行類型轉換。這意味著如果兩個操作數的類型不同，即使它們的值相同，=== 運算符也會返回 false。這使得 === 運算符更加嚴格和可預測，並且在進行比較時更安全。 -->
         <button @click="prevPage" :disabled="currentPage === 1">Previous</button>
         <span>{{ currentPage }}</span>
+        <!-- :disabled="currentPage === totalPages" 用於禁用按鈕，如果當前頁碼等於總頁數，則此按鈕將被禁用。 -->
         <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
     </div>
 
+    <!-- 換頁線 -->
     <div class="lineArea"></div>
 
     <h1>歷史紀錄</h1>
 
     <!-- 歷史紀錄 -->
     <div class="wrapperArea">
+        <!-- v-for="(item, index) in historyRecords"：用於遍歷 historyRecords 陣列中的每一個元素。item 是當前遍歷的元素，index 是該元素在陣列中的索引。 -->
         <div v-for="(item, index) in historyRecords" :key="index" class="card">
+            <!-- :src 屬性使用了動態綁定，根據 index 從 photos 陣列中獲取圖片的 URL。:alt 屬性也是動態綁定，它設置了圖片的替代文本，通常是該圖片的描述或名稱。 -->
             <img :src="this.photos[index]" class="card-img-top" :alt="item.Name">
             <div class="card-body">
                 <p class="card-text">{{ item.Name }}</p>
@@ -211,7 +217,6 @@ export default {
     </div>
 
     <!-- <div class="footerArea"></div> -->
-
 
     <Footer></Footer>
 </template>
