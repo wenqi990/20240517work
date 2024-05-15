@@ -586,13 +586,16 @@ export default{
             selectCategory:[],
 
 
-            
+             // v-show展示茲要
+            summarys:[],//總結
+            introductions:[],//介紹
+            activeIndex: null,//選擇景點訊息
+            areaBlock:'111',
         }
     },
     // =========================================================
     mounted(){
         this.tainan();
-        this.startSlideshow();
     },
     // =========================================================
     methods:{
@@ -601,7 +604,6 @@ export default{
             .then(res => res.json())
             .then(data => {
                 this.tainanAtt = data;
-                // console.log(data);
 
                 // 綁定圖片(檔案與圖片直接進行更動綁定)
                 this.tainanAtt.forEach((item, index) => {
@@ -612,6 +614,7 @@ export default{
                 // 提取縣市
                 const allDistricts = data.map(item => item.district);
                 this.districts = [...new Set(allDistricts)];
+
                 // 提取類別
                 // 使用reduce將所有景點收集到一個陣列中,
                 const allCategory = data.reduce((acc,item) =>{
@@ -619,6 +622,13 @@ export default{
                     return acc;
                 },[] );
                 this.categorys = [...new Set(allCategory)];
+
+                // 提取 introduction 和 summary 資料
+                this.introductions = data.map(item => item.introduction);
+                this.summarys = data.map(item => item.summary);
+
+                // // 更新 totalPages
+                // this.totalPages = Math.ceil(this.filteredAtt.length / 10);
             })
             .catch(error => {
                 console.error('資訊錯誤:', error);
@@ -712,6 +722,21 @@ export default{
             this.filteredAtt();
             // console.log(this.selectCategory);
         },
+        // 介紹與總結
+        toggleArea(index) {
+            if ( this.activeIndex === index &&this.areaBlock === '222') {
+            // 如果點擊的是當前啟動的景點區域，並且當前顯示的是簡介區域，則切換回景點區域
+            this.areaBlock = '111';
+            } else {
+                // 否則，設置啟動的索引和顯示簡介區域
+                this.activeIndex = index;
+                this.areaBlock = '222';
+            }
+        },
+        goBack() {
+            this.areaBlock = '111'; // 切回景點區域
+            this.activeIndex = null; // 重置索引值
+        }
         
     },
 // =======================================================
@@ -820,20 +845,42 @@ export default{
         <div class="rightArea">
 
             <!-- 景點(圖片+景點資訊) -->
-            <!-- 如果搜索時，顯示:圖片+景點名稱+地址+電話 -->
-            <!-- 如果未搜索時，顯示全部 -->
-            <div class="attractions"  v-for="(item,index) in filteredAtt" v-show="searchVshow && page(index)" :key="item.id">
+            <!-- 如果搜索時，如果輸入框有輸入文字，則"只"出現"符合"的景點的資訊(顯示:圖片+景點名稱+地址+電話) -->
+            <!-- 如果未搜索時，則出現"所有"景點的資訊 -->
+            <div class="attractionsArea"  v-for="(item,index) in filteredAtt" v-show="page(index) "  :key="item.id" >
 
-                <div class="attractionsImg"  >
-                    <img class="imgItem"  v-bind:src="item.imagePath" alt='tainanImg'>
-                </div>
-                <!-- 顯示我搜索的資料 -->
-                <!-- 使用v-show，如果輸入框有輸入文字，則"只"出現"符合"的景點的資訊 -->
-                <!-- 如果輸入框未輸入文字，則出現"所有"景點的資訊 -->
-                <div class="attractionsText" >
-                    <div class="attractionsName">{{ item.name }}</div>
-                    <div class="attractionsAddress">地址: {{ item.address }}</div>
-                    <div class="attractionsTel">電話: {{ item.tel }}</div>
+                <div class="attractions"  v-show="areaBlock==='111' && searchVshow " @click="toggleArea(index)">
+
+                    <div class="attractionsImg"  >
+                        <img class="imgItem"  v-bind:src="item.imagePath" alt='tainanImg'>
+                    </div>
+                    <div class="attractionsText" >
+                        <div class="attractionsName">{{ item.name }}</div>
+                        <div class="attractionsAddress">地址: {{ item.address }}</div>
+                        <div class="attractionsTel">電話: {{ item.tel }}</div>
+                    </div>
+                    
+                    <!-- 景點介紹與總結 -->
+                    <div class="introductionArea" v-show="activeIndex === index  ">
+
+                        <div class="introductionText" >    
+                            <h2 class="introductionName">{{ item.name }}</h2>
+
+                            <div class="introductionIn" >
+                                <h3>介紹</h3>
+                                <p>{{ item.introduction }}</p>
+                            </div>
+
+                            <div class="introductionSu">
+                                <h3>總結</h3>
+                                <p>{{ item.summary }}</p>
+                            </div>
+
+                            <!-- 返回按钮 -->
+                            <button class="buttonBack" @click="goBack">返回上一頁</button>
+                        </div>
+                    </div>
+
                 </div>
 
             </div>
@@ -849,6 +896,7 @@ export default{
                 <button class="buttonPage" @click="nextPage">下一頁</button>
                 <button class="buttonPage" @click="lastPage">最後一頁</button>
             </div>  
+            <!-- ====================================================== -->
         </div>
     </div>
 
