@@ -578,7 +578,7 @@ export default{
             // 多選區
             // 1、縣市
             districts: [], //用於抓取json檔中的districts
-            modelCheck: [],//多選的方框
+            // modelCheck: [],//多選的方框
             selectedDistricts: [], //勾選後的資訊放入這裡
             // 2、活動類別
             categorys:[],
@@ -751,11 +751,11 @@ export default{
         // =========================================================
         // 多選框
         // 針對縣市
+        //使用[...]=>擴展運算，創建新的數據，不直接使用原數據，這個新陣列與原始陣列具有相同的值，但是在記憶體中是獨立的
+        // 雖然selectedDistricts數據與modelCheck相同，但當你對 this.selectedDistricts 進行修改時，不會影響到 this.modelCheck，反之亦然。(因為記憶體是獨立的)
         checkDistrict() {
-            // 點及按鈕，獲取勾選區域
-            //使用[...]=>擴展運算，創建新的數據，不直接使用原數據，這個新陣列與原始陣列具有相同的值，但是在記憶體中是獨立的
-            // 雖然selectedDistricts數據與modelCheck相同，但當你對 this.selectedDistricts 進行修改時，不會影響到 this.modelCheck，反之亦然。(因為記憶體是獨立的)
-            this.selectedDistricts = [...this.modelCheck];
+            // this.selectedDistricts = [...this.modelCheck];
+            this.selectedDistricts
             this.filteredAtt();
         },
         // 針對類別
@@ -824,7 +824,7 @@ export default{
                  * 這在類型很多的情況下會變得複雜且效率較低。
                  */
                 //some 方法期望的是一個函數作為參數(some的參數是一個回調函數)，而不是一個陣列。
-                const categoryMatch = this.selectCategory.length === 0 || this.selectCategory.some(cat => item.category.includes(cat));
+                const categoryMatch = this.selectCategory.length === 0 ||this.selectCategory.some(cat => item.category.includes(cat));
 
                 // 同時考慮搜索框和多選框的輸入
                 // 要確保所有篩選條件都滿足才會回傳
