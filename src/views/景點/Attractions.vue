@@ -901,7 +901,7 @@ export default{
                     </div>
 
             <!-- 加入上下按鈕 -->
-            <div class="buttonArea">
+            <div class="buttonArea" v-show="areaBlock=='111'">
                 <button class="buttonPage" @click="firstPage" >第一頁</button>
                 <button class="buttonPage" @click="prevPage" >上一頁</button>
                 <select v-model="selectedPage" @change="updateSelectedPage">
@@ -958,7 +958,7 @@ export default{
 
 .leftArea{
     width: 20%;
-    height: 80dvh;
+    height: 100dvh;
     display: flex;
     flex-wrap: wrap;
     justify-content: left;
@@ -981,11 +981,11 @@ export default{
         font-size: 20px;
         font-weight: 100px;
         margin-top: 1%;
-        margin-left: 1%;
+        margin-left: 2%;
     }
 
     .checkArea{
-        margin-left: 1%;
+        margin-left: 2%;
     }
 }
 
@@ -1076,6 +1076,7 @@ export default{
     justify-content: center;
     align-items: center;
     margin-top: 1%;
+    margin-bottom: 2%;
 }
 
 .buttonPage{
@@ -1089,7 +1090,7 @@ export default{
     top:0;
     right:0% ;
     width: 100%;
-    height: 160dvh;
+    height: 200dvh;
     display: flex;
     justify-content: left;
     align-items: top;
