@@ -21,16 +21,22 @@ import Footer from '../views/Footer.vue'
         <h4>美食分享</h4>
       </div>
       <div class="info-item">
-        <a href="http://localhost:5173/Attractions" aria-label="Infobox link">
-        <img src="https://havefunday.com/wp-content/uploads/2023/06/400X400-icon_景點-150x150.png" alt="旅遊景點">
+        <a href="hhttp://localhost:5173/Activity" aria-label="Infobox link">
+        <img src="https://havefunday.com/wp-content/uploads/2023/06/400X400-icon_景點-150x150.png" alt="活動推薦">
         </a>
-        <h4>旅遊景點</h4>
+        <h4>活動推薦</h4>
       </div>
       <div class="info-item">
         <a href="http://localhost:5173/hotel" aria-label="Infobox link">
         <img src="https://havefunday.com/wp-content/uploads/2023/07/400X400-icon_別墅-150x150.webp" alt="住宿推薦">
         </a>
         <h4>住宿推薦</h4>
+      </div>
+      <div class="info-item">
+        <a href="http://localhost:5173/Attractions" aria-label="Infobox link">
+        <img src="https://havefunday.com/wp-content/uploads/2023/06/400X400-icon_廟宇-150x150.png" alt="景點推薦">
+        </a>
+        <h4>景點推薦</h4>
       </div>
     </div>
   </div>
