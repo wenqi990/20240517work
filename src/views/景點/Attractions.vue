@@ -971,7 +971,7 @@ export default{
         height: 5dvh;
         margin-top: 5px;
         border-radius: 5px;
-        font-size: 20px;
+        font-size: 18px;
         margin-left: 2%;
     }
 
@@ -1005,7 +1005,7 @@ export default{
 
 .attractionsArea{
     width: 100%;
-    height: 20dvh;
+    height: 23dvh;
     // border: 1px solid black;
     margin-top:1% ;
     display: flex;
@@ -1016,7 +1016,7 @@ export default{
 
 .attractions{
     width: 100%;
-    height: 17dvh;
+    height: 23dvh;
     display: flex;
     justify-content: left;
     align-items: center;
