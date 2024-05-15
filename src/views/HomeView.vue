@@ -200,9 +200,10 @@ import Footer from '../views/Footer.vue'
 
 .info-item img {
   max-width: 100%; 
-  .info-item:hover {
-  transform: scale(1.1); //滑鼠移入時放大 10%
 }
+
+.info-item:hover {
+  transform: scale(1.1); //滑鼠移入時放大 10%
 }
 
 h4 {
