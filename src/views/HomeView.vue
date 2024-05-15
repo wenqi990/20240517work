@@ -7,7 +7,7 @@ import Footer from '../views/Footer.vue'
   <div class="bg">
         <img src="/public/imags/首頁/背景底圖.svg">
     </div>
-  <img src="/public/imags/Hotel img/台南住宿.jpg" style="width: 100%;height: 80dvh;">
+  <img src="/public/imags/首頁/糖廠2.jpg" style="width: 100%;height: 80dvh;">
     <div class="about">
   </div>
 
