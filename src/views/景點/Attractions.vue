@@ -807,8 +807,13 @@ export default{
 <template>
 
 
+    <div class="topImg">
+        <img class="topImg1" src="https://www.twtainan.net/content/images/attractions/87859/1024x768_attractions-image-jmklrt8hmksxesbyceuinq.jpg" alt="">
+    </div>
 
-    <div class="big">  
+        <!-- 回頂部的按鈕 -->
+
+    <div class="big">      
 
         <div class="leftArea">
             <!-- 搜索 -->
@@ -847,44 +852,50 @@ export default{
             <!-- 景點(圖片+景點資訊) -->
             <!-- 如果搜索時，如果輸入框有輸入文字，則"只"出現"符合"的景點的資訊(顯示:圖片+景點名稱+地址+電話) -->
             <!-- 如果未搜索時，則出現"所有"景點的資訊 -->
-            <div class="attractionsArea"  v-for="(item,index) in filteredAtt" v-show="page(index) "  :key="item.id" >
+            <div class="attractionsArea"  v-for="(item,index) in filteredAtt" v-show="page(index)" :key="item.id" >
+                        <!-- =================================================== -->
+                        <div class="attractions" v-show="areaBlock==='111' && searchVshow && page(index)" @click="toggleArea(index)"  >
 
-                <div class="attractions"  v-show="areaBlock==='111' && searchVshow " @click="toggleArea(index)">
+                            <div class="attractionsImg"  >
+                                <img class="imgItem"  v-bind:src="item.imagePath" alt='tainanImg'>
+                            </div>
+                            <!-- 顯示我搜索的資料 -->
+                            <!-- 使用v-show，如果輸入框有輸入文字，則"只"出現"符合"的景點的資訊 -->
+                            <!-- 如果輸入框未輸入文字，則出現"所有"景點的資訊 -->
+                            <div class="attractionsText" >
+                                <div class="attractionsName">{{ item.name }}</div>
+                                <div class="attractionsAddress">地址: {{ item.address }}</div>
+                                <div class="attractionsTel">電話: {{ item.tel }}</div>
+                            </div>
 
-                    <div class="attractionsImg"  >
-                        <img class="imgItem"  v-bind:src="item.imagePath" alt='tainanImg'>
-                    </div>
-                    <div class="attractionsText" >
-                        <div class="attractionsName">{{ item.name }}</div>
-                        <div class="attractionsAddress">地址: {{ item.address }}</div>
-                        <div class="attractionsTel">電話: {{ item.tel }}</div>
-                    </div>
+                        </div>   
+                        
+                        <!-- ================================================================== -->
                     
-                    <!-- 景點介紹與總結 -->
-                    <div class="introductionArea" v-show="activeIndex === index  ">
+                <!-- </div> -->
 
-                        <div class="introductionText" >    
-                            <h2 class="introductionName">{{ item.name }}</h2>
+                            <!-- 當areaBlock==222 -->
+                            <div class="introductionArea" v-show="activeIndex === index  ">
+                                <div class="introductionText" >    
+                                    <h2 class="introductionName">{{ item.name }}</h2>
+                                        
+                                    <div class="introductionIn" >
+                                        <h3>介紹</h3>
+                                        <p>{{ item.introduction }}</p>
+                                    </div>
 
-                            <div class="introductionIn" >
-                                <h3>介紹</h3>
-                                <p>{{ item.introduction }}</p>
+                                    <div class="introductionSu">
+                                        <h3>總結</h3>
+                                        <p>{{ item.summary }}</p>
+                                    </div>
+
+                                    <div class="goButton">
+                                        <!-- 返回按钮 -->
+                                        <button class="buttonBack" @click="goBack">返回上一頁</button>
+                                    </div>    
+                                </div>
                             </div>
-
-                            <div class="introductionSu">
-                                <h3>總結</h3>
-                                <p>{{ item.summary }}</p>
-                            </div>
-
-                            <!-- 返回按钮 -->
-                            <button class="buttonBack" @click="goBack">返回上一頁</button>
-                        </div>
                     </div>
-
-                </div>
-
-            </div>
-
 
             <!-- 加入上下按鈕 -->
             <div class="buttonArea">
@@ -897,17 +908,34 @@ export default{
                 <button class="buttonPage" @click="lastPage">最後一頁</button>
             </div>  
             <!-- ====================================================== -->
+
         </div>
     </div>
 
     <div class="bg">
-    <img src="/public/imags/景點類圖片/20220929215654_71.jpg" style="width: 100dvw;height: 100dvh;opacity: 5%;">
+    <img src="/public/imags/景點類圖片/20220929215654_71.jpg" style="width: 100dvw;height: 100dvh;opacity: 10%;">
     </div>
 
 </template>
 
 
 <style scoped lang="scss">
+
+.topImg{
+    width: 100%;
+    height: 50dvh;
+    // border: 1px solid black;
+    position: relative;
+
+    .topImg1{
+        width: 100%;
+        max-height: 100%;
+        object-fit: cover;
+        overflow: hidden;
+        
+    }
+
+}
 
 .bg{
     position: fixed;
@@ -933,6 +961,7 @@ export default{
     justify-content: left;
     border: 1px solid black;
     margin-left: 1%;
+    margin-top: 1%;
 
     .searchArea{
         width: 94%;
@@ -964,17 +993,31 @@ export default{
     flex-direction: column;
     justify-self: start;
     align-items: center;
+    margin-left: 5%;
+    margin-right: 2%;
+
+    position: relative;
 }
 
 
-.attractions{
-    width: 80%;
+.attractionsArea{
+    width: 100%;
     height: 20dvh;
-    border: 1px solid black;
+    // border: 1px solid black;
     margin-top:1% ;
     display: flex;
     justify-content: left;
     align-items: center;
+
+}
+
+.attractions{
+    width: 100%;
+    height: 17dvh;
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    border: 1px solid black;
 
     transition: 0.4 s;
 
@@ -1036,5 +1079,51 @@ export default{
     width: 35%;
     height: 60%;
     margin: 5%;
+}
+
+.introductionArea{
+    position: absolute;
+    top:0;
+    right:0% ;
+    width: 100%;
+    height: 160dvh;
+    display: flex;
+    justify-content: left;
+    align-items: top;
+    background: rgb(255, 255, 255);
+    color: rgb(0, 0, 0);
+    z-index:999;
+    margin-top: 2%;
+}
+
+.introductionText{
+    padding: 2%;
+    border-radius:5px ;
+    border: 1px solid rgba(255, 255, 255, 0);
+    box-shadow: 2px 2px 5px black;
+
+    .introductionName{
+        font-size: 46px;
+    }
+
+    .introductionIn,
+    .introductionSu{
+        font-size: 16px;
+    }
+
+    h3{
+        font-size: 28px;
+        margin: 1% 0,
+    }
+
+    .goButton{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .buttonBack{
+        margin-top: 2%;
+        font-size: 28px;
+    }
 }
 </style>
