@@ -1,4 +1,4 @@
-<script >
+<script>
 import Footer from '../../views/Footer.vue';
 
 export default {
@@ -26,21 +26,24 @@ export default {
             historyRecords: [], // 用於存儲歷史紀錄的數組
         };
     },
-    mounted() {
+    mounted() { // 當 Vue 實例的 mounted() 方法被調用時，該組件的 DOM 元素已經被加載，並且可以進行 DOM 相關的操作，如獲取資料、設置計時器或者觸發事件等。
         fetch('./public/檔案/hotel_C_f.json')
             .then((res) => res.json())
             .then((data) => {
                 console.log(data);
                 this.tainanArr = data.XML_Head.Infos.Info.filter((item) =>
-                    item.Add.includes('臺南')
+                    item.Add.includes('臺南') // 表示對 data.XML_Head.Infos.Info 中的每個項目應用一個過濾器函數。對於每個項目 item，箭頭函數 => 後面的代碼 item.Add.includes('臺南') 表示檢查 item 的 Add 屬性是否包含字符串 '臺南'。如果是，則保留該項目；如果不是，則將其從結果中去除。
                 );
+                // new Set() 是創建 Set 物件的語法。例如，new Set([1, 2, 3, 3, 4, 4, 5]) 會創建一個包含 [1, 2, 3, 4, 5] 的 Set 物件，自動去除了重複的值。
+                // map 方法，該方法會對陣列中的每個元素都調用一次指定的函式，並將每次呼叫的結果組成一個新的陣列返回。
+                // this.tainanArr 陣列中的每個元素都取出 Town 屬性的值，並將這些值組成一個新的陣列返回。
                 this.cities = [...new Set(this.tainanArr.map((item) => item.Town))];
                 this.prices = [...new Set(this.tainanArr.map((item) => item.LowestPrice))];
             });
     },
     methods: {
         cityChanged() {
-            this.selectedCity = this.$refs.selectCity.value;
+            this.selectedCity = this.$refs.selectCity.value; // 這個元素或組件被設置了 ref="selectCity"，所以當程式碼執行時，this.$refs.selectCity 就會返回這個元素或組件，從而可以使用 .value 來取得它的值。
         },
         priceChanged() {
             const city = this.selectedCity;
@@ -73,7 +76,9 @@ export default {
                 this.currentPage--;
             }
         },
-        nextPage() { // 首先檢查當前頁碼 (this.currentPage) 是否小於總頁數 (this.totalPages)。
+        nextPage() { 
+            // 首先檢查當前頁碼 (this.currentPage) 是否小於總頁數 (this.totalPages)。
+            // 這個條件確保了在已經達到最後一頁時不再增加頁碼，從而防止超出總頁數的範圍。
             if (this.currentPage < this.totalPages) {
                 this.currentPage++;
             }
@@ -83,17 +88,20 @@ export default {
                 this.historyRecords.push(item);
             } else {
                 // 如果歷史紀錄已滿，則刪除第一個卡片
+                // .shift() 是 JavaScript 陣列的一個方法，它用於從陣列的開頭移除一個元素，並返回被移除的元素。
                 this.historyRecords.shift();
                 // 將新的卡片添加到最後
+                // .push(item) 是 JavaScript 陣列的一個方法，它用於將一個或多個元素添加到陣列的末尾。
                 this.historyRecords.push(item);
             }
         },
     },
+    // computed 是一種特殊的屬性，用於定義計算屬性（computed properties）。計算屬性是基於它們所依賴的數據進行動態計算的屬性，並且只有在相依的數據發生改變時才會重新計算，否則會緩存上一次的計算結果。
     computed: { // 1.監聽多變數觸發事件 2.會產生一個值 3.只要變數沒動，就不會再 run 一次
         filteredHotels() {
             const city = this.selectedCity;
             const price = this.selectedPrice;
-            let filtered = this.tainanArr; // 直接返回所有臺南的飯店資料
+            let filtered = this.tainanArr; // 將this.tainanArr中的臺南的所有飯店資料存儲到名為filtered的變數中。這樣做的目的是為了在進行篩選操作時，不會直接修改原始的飯店資料，而是對副本進行操作，以保護原始資料的完整性。
 
             if (city) { // 如果選擇了 "區"，則進行區域篩選
                 if (price === "a") {
@@ -125,20 +133,31 @@ export default {
         },
     },
     components: { Footer },
-    setup(){
-    return {}
+    setup() {
+        return {}
     }
 }
 </script>
 
 <template>
+    <!-- 卡片後方的背景 -->
+    <div class="bg">
+        <img src="/public/imags/Hotel img/艾爾登住宿.jpg">
+    </div>
+
     <div class="pictureArea">
-        <img src="https://d3f9k0n15ckvhe.cloudfront.net/wp-content/uploads/2021/10/forest-lake_1440x520.png" alt="台南飯店">
+        <img src="https://d3f9k0n15ckvhe.cloudfront.net/wp-content/uploads/2021/10/forest-lake_1440x520.png" alt="湖泊">
     </div>
 
     <!-- 篩選欄位 -->
     <div class="searchArea">
+        <!-- v-model 指令將選擇的城市與 selectedCity 變數進行雙向綁定，當選擇改變時，@change 事件會觸發 cityChanged 方法。 -->
+        <!-- @符號是v-on指令的縮寫形式，用於監聽DOM事件並執行對應的事件處理函數。 -->
         <select v-model="selectedCity" @change="cityChanged" ref="selectCity">
+            <!-- v-for="city in cities"：用於在模板中遍歷一個數據陣列（這裡是cities），對於cities陣列中的每個元素，Vue.js會生成一個<option>元素。 -->
+            <!-- 使用 v-for 遍歷一個陣列時，應該為每個循環中的元素提供一個唯一的 key 值，這樣 Vue.js 才能正確地跟踪每個元素的變化、移動和更新。這就是 :key 屬性的作用，它確保在 DOM 中的每個列表元素都具有唯一的標識符，從而幫助 Vue.js 更有效地更新 DOM。 -->
+            <!-- : 是一種簡寫方式，用來表示 v-bind 屬性。 -->
+            <!-- 綁定value屬性的動態值，用於設置每個<option>元素的值。在下拉選單中，選中某個選項時，其對應的值就是city中的元素值。 -->
             <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
         </select>
 
@@ -150,10 +169,14 @@ export default {
         </select>
     </div>
 
+    <!-- bootstrap的水平卡片 -->
     <div class="bootstrapArea">
+        <!-- 用於遍歷 paginatedHotels 陣列中的每一個元素，並生成相應的 HTML 元素。item 是當前遍歷的元素，index 是該元素在陣列中的索引。 -->
+        <!-- 當卡片被點擊時觸發的事件，調用了 addToHistory 方法，將點擊的酒店信息添加到歷史紀錄中。 -->
         <div v-for="(item, index) in paginatedHotels" :key="index" class="card" @click="addToHistory(item)">
             <div class="row g-0 flex-row">
                 <div class="col-md-5">
+                    <!-- @click="showHotelDetails(item)" 是一個 Vue.js 中的事件監聽器，它會在使用者點擊卡片中的圖片時觸發 showHotelDetails 方法。這個方法用於顯示酒店的詳細信息，並且以 item（即當前遍歷的酒店項目）作為參數傳遞。 -->
                     <img :src="this.photos[index]" class="img-fluid rounded-start" alt="飯店"
                         @click="showHotelDetails(item)">
                 </div>
@@ -173,18 +196,24 @@ export default {
 
     <!-- 上一頁 下一頁 -->
     <div class="pagination">
+        <!-- :disabled="currentPage === 1" 用於禁用按鈕，如果當前頁碼等於 1，則此按鈕將被禁用。 -->
+        <!-- 與 == 運算符相比，=== 運算符不會進行類型轉換。這意味著如果兩個操作數的類型不同，即使它們的值相同，=== 運算符也會返回 false。這使得 === 運算符更加嚴格和可預測，並且在進行比較時更安全。 -->
         <button @click="prevPage" :disabled="currentPage === 1">Previous</button>
         <span>{{ currentPage }}</span>
+        <!-- :disabled="currentPage === totalPages" 用於禁用按鈕，如果當前頁碼等於總頁數，則此按鈕將被禁用。 -->
         <button @click="nextPage" :disabled="currentPage === totalPages">Next</button>
     </div>
 
+    <!-- 換頁線 -->
     <div class="lineArea"></div>
 
     <h1>歷史紀錄</h1>
 
     <!-- 歷史紀錄 -->
     <div class="wrapperArea">
+        <!-- v-for="(item, index) in historyRecords"：用於遍歷 historyRecords 陣列中的每一個元素。item 是當前遍歷的元素，index 是該元素在陣列中的索引。 -->
         <div v-for="(item, index) in historyRecords" :key="index" class="card">
+            <!-- :src 屬性使用了動態綁定，根據 index 從 photos 陣列中獲取圖片的 URL。:alt 屬性也是動態綁定，它設置了圖片的替代文本，通常是該圖片的描述或名稱。 -->
             <img :src="this.photos[index]" class="card-img-top" :alt="item.Name">
             <div class="card-body">
                 <p class="card-text">{{ item.Name }}</p>
@@ -193,7 +222,6 @@ export default {
     </div>
 
     <!-- <div class="footerArea"></div> -->
-    
 
     <Footer></Footer>
 </template>
@@ -243,14 +271,13 @@ export default {
         border-radius: 6px;
         background: rgba(0, 0, 0, 0.789);
         z-index: 1;
+        // 使用 linear 過渡函數時，元素的變化會以一種均勻的速度進行，從初始狀態平滑地過渡到最終狀態，而這個過程中不會有變化速度的變化。這使得過渡效果看起來非常平滑和一致。
         transition: 0.3s linear; // 動畫時間變成線性成長
+
         &:hover {
             scale: 1.1;
         }
     }
-
-
-
 
     p {
         // 卡片裡面的文字
@@ -266,6 +293,7 @@ export default {
 
     .card {
         border: none;
+        background: rgba(255, 255, 255, 0);
     }
 }
 
@@ -331,4 +359,15 @@ h1 {
     }
 }
 
+.bg {
+    position: fixed;
+    bottom: 0;
+    z-index: -999;
+    opacity: 0.8;
+
+    img {
+        width: 100dvw;
+
+    }
+}
 </style>
