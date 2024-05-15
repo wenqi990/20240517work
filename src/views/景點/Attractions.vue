@@ -1,5 +1,5 @@
 <script>
-
+import Footer from '../../views/Footer.vue';
 export default{
     data(){
         return{
@@ -798,7 +798,10 @@ export default{
             immediate: true
             },
         },
-    
+        components: { Footer },
+    setup(){
+    return {}
+    }
 
 }
 </script>
@@ -903,7 +906,7 @@ export default{
     <div class="bg">
     <img src="/public/imags/景點類圖片/20220929215654_71.jpg" style="width: 100dvw;height: 100dvh;opacity: 5%;">
     </div>
-
+<Footer></Footer>
 </template>
 
 
