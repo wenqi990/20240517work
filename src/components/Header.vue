@@ -1,12 +1,48 @@
 <script>
 import { RouterLink, RouterView } from 'vue-router'
+import { ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 // options API 寫法
 export default{
     // components => 放能在 <template> 中當標籤使用的元件或方法
     components:{
         RouterView,
-    }
+    },
+    setup() {
+    const keyword = ref('');
+    const router = useRouter();
+
+    const search = () => {
+      switch (keyword.value.trim()) {
+        case '美食':
+          scrollToBlock('block1');
+          break;
+        case '景點':
+          scrollToBlock('block2');
+          break;
+        case '住宿':
+          scrollToBlock('block3');
+          break;
+        default:
+          // 其他情況的處理，或者給用戶提供反饋
+          console.log("找不到相應區塊");
+          break;
+      }
+    };
+
+    const scrollToBlock = (blockId) => {
+      const block = document.getElementById(blockId);
+      if (block) {
+        block.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+
+    return {
+      keyword,
+      search
+    };
+  }
 }
 </script>
 
@@ -22,9 +58,9 @@ export default{
     <!-- <RouterLink class="routerItem" to="/Footer">Footer</RouterLink> -->
     <!-- <RouterLink class="routerItem" to="/Map">Map</RouterLink> -->
     <div class="search">
-        <input type="text" placeholder="搜尋">
+        <input type="text" placeholder="搜尋" v-model="keyword">
         <label></label>
-        <button type="button" class="btn btn-dark">搜尋</button>
+        <button type="button" class="btn btn-dark"  @click="search">搜尋</button>
       </div>
     </div>
 

@@ -46,6 +46,7 @@ import Footer from '../views/Footer.vue'
   <Map></Map>
 </div>
 
+<div class="block1" id="block1">
   <div class="second area">
         <div class="secondText">
             <h1>讓我們一起嗨放美食</h1>
@@ -91,7 +92,9 @@ import Footer from '../views/Footer.vue'
               </div>
         </div>
     </div>
+  </div>
 
+  <div class="block2" id="block2">
     <div class="fourth area">
       <img src="/public/imags/首頁/奇美博物館.jpg" alt="">
       <div class="fourthText">
@@ -134,8 +137,10 @@ import Footer from '../views/Footer.vue'
         </div>
     </div>
 </div>
+</div>
 
 
+<div class="block3" id="block3">
     <div class="sixth area">
       <img src="/public/imags/首頁/靡生.webp" alt="">
       <div class="sixthText">
@@ -178,6 +183,7 @@ import Footer from '../views/Footer.vue'
               </div>
         </div>
     </div>
+  </div>
     <Footer></Footer>
 </template>
 
