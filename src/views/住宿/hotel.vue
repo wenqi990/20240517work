@@ -135,11 +135,13 @@ export default {
 </script>
 
 <template>
+    <!-- 卡片後方的背景 -->
     <div class="bg">
         <img src="/public/imags/Hotel img/艾爾登住宿.jpg">
     </div>
+
     <div class="pictureArea">
-        <img src="https://d3f9k0n15ckvhe.cloudfront.net/wp-content/uploads/2021/10/forest-lake_1440x520.png" alt="台南飯店">
+        <img src="https://d3f9k0n15ckvhe.cloudfront.net/wp-content/uploads/2021/10/forest-lake_1440x520.png" alt="湖泊">
     </div>
 
     <!-- 篩選欄位 -->
@@ -147,6 +149,10 @@ export default {
         <!-- v-model 指令將選擇的城市與 selectedCity 變數進行雙向綁定，當選擇改變時，@change 事件會觸發 cityChanged 方法。 -->
         <!-- @符號是v-on指令的縮寫形式，用於監聽DOM事件並執行對應的事件處理函數。 -->
         <select v-model="selectedCity" @change="cityChanged" ref="selectCity">
+            <!-- v-for="city in cities"：用於在模板中遍歷一個數據陣列（這裡是cities），對於cities陣列中的每個元素，Vue.js會生成一個<option>元素。 -->
+            <!-- 使用 v-for 遍歷一個陣列時，應該為每個循環中的元素提供一個唯一的 key 值，這樣 Vue.js 才能正確地跟踪每個元素的變化、移動和更新。這就是 :key 屬性的作用，它確保在 DOM 中的每個列表元素都具有唯一的標識符，從而幫助 Vue.js 更有效地更新 DOM。 -->
+            <!-- : 是一種簡寫方式，用來表示 v-bind 屬性。 -->
+            <!-- 綁定value屬性的動態值，用於設置每個<option>元素的值。在下拉選單中，選中某個選項時，其對應的值就是city中的元素值。 -->
             <option v-for="city in cities" :key="city" :value="city">{{ city }}</option>
         </select>
 
@@ -158,10 +164,14 @@ export default {
         </select>
     </div>
 
+    <!-- bootstrap的水平卡片 -->
     <div class="bootstrapArea">
+        <!-- 用於遍歷 paginatedHotels 陣列中的每一個元素，並生成相應的 HTML 元素。item 是當前遍歷的元素，index 是該元素在陣列中的索引。 -->
+        <!-- 當卡片被點擊時觸發的事件，調用了 addToHistory 方法，將點擊的酒店信息添加到歷史紀錄中。 -->
         <div v-for="(item, index) in paginatedHotels" :key="index" class="card" @click="addToHistory(item)">
             <div class="row g-0 flex-row">
                 <div class="col-md-5">
+                    <!-- @click="showHotelDetails(item)" 是一個 Vue.js 中的事件監聽器，它會在使用者點擊卡片中的圖片時觸發 showHotelDetails 方法。這個方法用於顯示酒店的詳細信息，並且以 item（即當前遍歷的酒店項目）作為參數傳遞。 -->
                     <img :src="this.photos[index]" class="img-fluid rounded-start" alt="飯店"
                         @click="showHotelDetails(item)">
                 </div>
@@ -252,6 +262,7 @@ export default {
         background: rgba(0, 0, 0, 0.789);
         z-index: 1;
         transition: 0.3s linear; // 動畫時間變成線性成長
+
         &:hover {
             scale: 1.1;
         }
@@ -345,6 +356,7 @@ h1 {
     bottom: 0;
     z-index: -999;
     opacity: 0.8;
+
     img {
         width: 100dvw;
 
