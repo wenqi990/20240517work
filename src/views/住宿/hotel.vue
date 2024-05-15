@@ -76,7 +76,9 @@ export default {
                 this.currentPage--;
             }
         },
-        nextPage() { // 首先檢查當前頁碼 (this.currentPage) 是否小於總頁數 (this.totalPages)。
+        nextPage() { 
+            // 首先檢查當前頁碼 (this.currentPage) 是否小於總頁數 (this.totalPages)。
+            // 這個條件確保了在已經達到最後一頁時不再增加頁碼，從而防止超出總頁數的範圍。
             if (this.currentPage < this.totalPages) {
                 this.currentPage++;
             }
@@ -86,8 +88,10 @@ export default {
                 this.historyRecords.push(item);
             } else {
                 // 如果歷史紀錄已滿，則刪除第一個卡片
+                // .shift() 是 JavaScript 陣列的一個方法，它用於從陣列的開頭移除一個元素，並返回被移除的元素。
                 this.historyRecords.shift();
                 // 將新的卡片添加到最後
+                // .push(item) 是 JavaScript 陣列的一個方法，它用於將一個或多個元素添加到陣列的末尾。
                 this.historyRecords.push(item);
             }
         },
@@ -266,15 +270,13 @@ export default {
         border-radius: 6px;
         background: rgba(0, 0, 0, 0.789);
         z-index: 1;
+        // 使用 linear 過渡函數時，元素的變化會以一種均勻的速度進行，從初始狀態平滑地過渡到最終狀態，而這個過程中不會有變化速度的變化。這使得過渡效果看起來非常平滑和一致。
         transition: 0.3s linear; // 動畫時間變成線性成長
 
         &:hover {
             scale: 1.1;
         }
     }
-
-
-
 
     p {
         // 卡片裡面的文字
