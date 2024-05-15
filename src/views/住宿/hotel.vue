@@ -96,11 +96,12 @@ export default {
             }
         },
     },
+    // computed 是一種特殊的屬性，用於定義計算屬性（computed properties）。計算屬性是基於它們所依賴的數據進行動態計算的屬性，並且只有在相依的數據發生改變時才會重新計算，否則會緩存上一次的計算結果。
     computed: { // 1.監聽多變數觸發事件 2.會產生一個值 3.只要變數沒動，就不會再 run 一次
         filteredHotels() {
             const city = this.selectedCity;
             const price = this.selectedPrice;
-            let filtered = this.tainanArr; // 直接返回所有臺南的飯店資料
+            let filtered = this.tainanArr; // 將this.tainanArr中的臺南的所有飯店資料存儲到名為filtered的變數中。這樣做的目的是為了在進行篩選操作時，不會直接修改原始的飯店資料，而是對副本進行操作，以保護原始資料的完整性。
 
             if (city) { // 如果選擇了 "區"，則進行區域篩選
                 if (price === "a") {
