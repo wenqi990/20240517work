@@ -246,9 +246,9 @@ export default {
         border-radius: 6px;
         background: rgba(0, 0, 0, 0.789);
         z-index: 1;
-
+        transition: 0.3s linear; // 動畫時間變成線性成長
         &:hover {
-            scale: 1.2;
+            scale: 1.1;
         }
     }
 
