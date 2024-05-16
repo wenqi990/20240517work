@@ -27,6 +27,7 @@ export default{
         default:
           // 其他情況的處理，或者給用戶提供反饋
           console.log("找不到相應區塊");
+          alert("找不到相關資料");
           break;
       }
     };
