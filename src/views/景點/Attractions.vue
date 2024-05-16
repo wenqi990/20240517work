@@ -823,7 +823,7 @@ export default{
                  *  因為category 包含很多類型，如果使用includes，他會將每個 item.category 的值分別與 this.selectCategory 進行比對。
                  * 這在類型很多的情況下會變得複雜且效率較低。
                  */
-                //some 方法期望的是一個函數作為參數(some的參數是一個回調函數)，而不是一個陣列。
+                //some 方法  期望的是"一個函數作為參數(some的參數是一個回調函數)"，而"不是"一個陣列。
                 const categoryMatch = this.selectCategory.length === 0 ||this.selectCategory.some(cat => item.category.includes(cat));
 
                 // 同時考慮搜索框和多選框的輸入
@@ -924,9 +924,6 @@ export default{
                             <div class="attractionsImg"  >
                                 <img class="imgItem"  v-bind:src="item.imagePath" alt='tainanImg'>
                             </div>
-                            <!-- 顯示我搜索的資料 -->
-                            <!-- 使用v-show，如果輸入框有輸入文字，則"只"出現"符合"的景點的資訊 -->
-                            <!-- 如果輸入框未輸入文字，則出現"所有"景點的資訊 -->
                             <div class="attractionsText" >
                                 <div class="attractionsName">{{ item.name }}</div>
                                 <div class="attractionsAddress">地址: {{ item.address }}</div>
@@ -936,11 +933,9 @@ export default{
                         </div>   
                         
                         <!-- ================================================================== -->
-                    
-                <!-- </div>activeIndex === index  -->
 
                             <!-- 當areaBlock==222 -->
-                            <div class="introductionArea" v-show="activeIndex === index  ">
+                            <div class="introductionArea" v-show="activeIndex === index ">
                                 <div class="introductionText" >    
                                     <h2 class="introductionName">{{ item.name }}</h2>
                                         
