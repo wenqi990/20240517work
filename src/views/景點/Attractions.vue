@@ -874,11 +874,17 @@ export default{
     </div>
 
         <!-- 回頂部的按鈕 -->
-        <div class="topJpg">
-  <a href="#">
-    <img src="/public/imags/首頁/top.png" style="width: 100px;height: 100px;">
-  </a>
-  </div>
+    <div class="topJpg">
+        <a class="topImg" href="#">
+            <img src="/public/imags/首頁/top.png" style="width: 50px;height: 50px;">
+        </a>
+        <!-- 回底部按鈕 -->
+        <!-- window.scrollTo(水平位置,垂直位置) 是一個 JavaScript 函數，用於控制流覽器視窗的滾動位置。 -->
+        <!-- return false  => 阻止默認行為的發生(原本的href="#" 是他的默認行為(為true) -->
+        <a class="bottomImg" href="#" onclick="window.scrollTo(0, document.body.scrollHeight); return false;">
+            <img src="/public/imags/首頁/bottom.png" style="width: 50px;height: 50px;">
+        </a>
+    </div>
 
     <div class="big">      
 
@@ -942,7 +948,7 @@ export default{
 
                             <!-- 當areaBlock==222 -->
                             <!-- <div class="introductionArea" v-show="areaBlock=='222' " @click="toggleArea(index)"> -->
-                            <div class="introductionArea" v-show="activeIndex === index " @click="toggleArea(index)">
+                            <div class="introductionArea" v-show="activeIndex === index ">
                                 <div class="introductionText" >    
                                     <h2 class="introductionName">{{ item.name }}</h2>
                                         
@@ -989,19 +995,46 @@ export default{
 <style scoped lang="scss">
 
 .topJpg{
+    width: 50px;
+    height: 110px;
+    position: relative;
     position: fixed;
     right: 1px;
     bottom: 5px;
     z-index: 999;
     transition: 0.5s;
-    // 鼠標移到按鈕時放大
-    &:hover{
+
+    .topImg{
+        position: absolute;
+        top:0;
+        right:0;
+        transition: 0.5s;
+
+        // 鼠標移到按鈕時放大
+        &:hover{
             scale: 1.05;
         }
         // 鼠標移到按鈕時縮小
         &:active{
             scale: 0.95;
         }
+    }
+
+    .bottomImg{
+        position: absolute;
+        top:55px;
+        right: 0;
+        transition: 0.2s;
+
+        // 鼠標移到按鈕時放大
+        &:hover{
+            scale: 1.05;
+        }
+        // 鼠標移到按鈕時縮小
+        &:active{
+            scale: 0.95;
+        }
+    }
 }
 
 .topImg{
@@ -1183,7 +1216,7 @@ export default{
     align-items: top;
     background: rgb(255, 255, 255);
     color: rgb(0, 0, 0);
-    z-index:999;
+    z-index:990;
     margin-top: 2%;
 }
 
