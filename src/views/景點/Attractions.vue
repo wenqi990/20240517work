@@ -1000,9 +1000,8 @@ export default{
     position: relative;
     position: fixed;
     right: 1px;
-    bottom: 5px;
+    bottom: 10px;
     z-index: 999;
-    transition: 0.5s;
 
     .topImg{
         position: absolute;
@@ -1018,6 +1017,7 @@ export default{
         &:active{
             scale: 0.95;
         }
+
     }
 
     .bottomImg{
@@ -1035,6 +1035,7 @@ export default{
             scale: 0.95;
         }
     }
+
 }
 
 .topImg{
