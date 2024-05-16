@@ -765,7 +765,7 @@ export default{
             this.filteredAtt();
         },
         // ===========================================
-        // 介紹與總結
+        // // 介紹與總結
         toggleArea(index) {
             // this.activeIndex 為被點擊的景點的索引位置 index
             if ( this.activeIndex === index) {
@@ -778,6 +778,7 @@ export default{
                 this.areaBlock = '222';
             }
         },
+
         
         // 返回上一頁
         goBack() {
@@ -935,7 +936,8 @@ export default{
                         <!-- ================================================================== -->
 
                             <!-- 當areaBlock==222 -->
-                            <div class="introductionArea" v-show="activeIndex === index ">
+                            <!-- <div class="introductionArea" v-show="areaBlock=='222' " @click="toggleArea(index)"> -->
+                            <div class="introductionArea" v-show="activeIndex === index " @click="toggleArea(index)">
                                 <div class="introductionText" >    
                                     <h2 class="introductionName">{{ item.name }}</h2>
                                         
