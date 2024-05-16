@@ -874,6 +874,11 @@ export default{
     </div>
 
         <!-- 回頂部的按鈕 -->
+        <div class="topJpg">
+  <a href="#">
+    <img src="/public/imags/首頁/top.png" style="width: 100px;height: 100px;">
+  </a>
+  </div>
 
     <div class="big">      
 
@@ -982,6 +987,22 @@ export default{
 
 
 <style scoped lang="scss">
+
+.topJpg{
+    position: fixed;
+    right: 1px;
+    bottom: 5px;
+    z-index: 999;
+    transition: 0.5s;
+    // 鼠標移到按鈕時放大
+    &:hover{
+            scale: 1.05;
+        }
+        // 鼠標移到按鈕時縮小
+        &:active{
+            scale: 0.95;
+        }
+}
 
 .topImg{
     width: 100%;
