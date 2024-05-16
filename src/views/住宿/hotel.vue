@@ -124,8 +124,11 @@ export default {
 
             return filtered;
         },
-        totalPages() { // 計算屬性的作用是計算分頁後的總頁數，以便在分頁功能中使用。
-            return Math.ceil(this.filteredHotels.length / this.pageSize); // Math.ceil() 是 JavaScript 中的一個內建函式，用於取得大於或等於給定數字的最小整數。它將傳入的數字向上取整為最接近的整數。使用 Math.ceil() 函式將這個除法結果向上取整，確保總頁數總是一個大於等於實際計算值的整數。
+        // 計算屬性的作用是計算分頁後的總頁數，以便在分頁功能中使用。
+        totalPages() {
+            // Math.ceil() 是 JavaScript 中的一個內建函式，用於取得大於或等於給定數字的最小整數。它將傳入的數字向上取整為最接近的整數。使用 Math.ceil() 函式將這個除法結果向上取整，確保總頁數總是一個大於等於實際計算值的整數。
+            // 舉例來說，如果你有一個數字，比如 3.14，Math.ceil(3.14) 將返回 4，因為它是大於或等於 3.14 的最小整數。同樣地，Math.ceil(5.7) 將返回 6，因為它是大於或等於 5.7 的最小整數。
+            return Math.ceil(this.filteredHotels.length / this.pageSize); 
         },
         paginatedHotels() {
             // 它計算了當前頁面上的飯店資料的起始索引，即 start。這是通過將當前頁碼減一乘以每頁顯示的飯店數量來實現的。
