@@ -108,7 +108,11 @@ export default{
   },
   beforeDestroy() {
     this.stopCarousel();
-        }
+        },
+        components: { Footer },
+        setup(){
+        return {}
+    }
     }
     </script>
 
@@ -151,7 +155,7 @@ export default{
       <img :src="selectedShopImage" alt="你渴望力量嗎">
   </div>
     </div>
-    <div class="asidesu"></div>
+    <!-- <div class="asidesu"></div> -->
 
     <div class="topJpg">
         <a class="topImg" href="#">
