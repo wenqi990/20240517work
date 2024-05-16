@@ -105,6 +105,7 @@ export default {
 
             if (city) { // 如果選擇了 "區"，則進行區域篩選
                 if (price === "a") {
+                    // .filter() 是陣列方法之一，用於篩選陣列中的元素並返回符合指定條件的元素所組成的新陣列。這個方法接受一個函數作為參數，這個函數用於定義篩選的條件。
                     filtered = filtered.filter(item => item.Town === city && item.LowestPrice < 4000);
                 } else if (price === "b") {
                     filtered = filtered.filter(item => item.Town === city && item.LowestPrice >= 4000 && item.LowestPrice <= 7000);
@@ -127,9 +128,13 @@ export default {
             return Math.ceil(this.filteredHotels.length / this.pageSize); // Math.ceil() 是 JavaScript 中的一個內建函式，用於取得大於或等於給定數字的最小整數。它將傳入的數字向上取整為最接近的整數。使用 Math.ceil() 函式將這個除法結果向上取整，確保總頁數總是一個大於等於實際計算值的整數。
         },
         paginatedHotels() {
-            const start = (this.currentPage - 1) * this.pageSize; // 它計算了當前頁面上的飯店資料的起始索引，即 start。這是通過將當前頁碼減一乘以每頁顯示的飯店數量來實現的。
-            const end = start + this.pageSize; // 它計算了當前頁面上的飯店資料的結束索引，即 end。這是將起始索引 start 加上每頁顯示的飯店數量來實現的。
-            return this.filteredHotels.slice(start, end); // 它使用 slice() 方法從篩選後的飯店資料陣列 filteredHotels 中取出從 start 到 end 範圍的飯店資料，然後將這個範圍的資料作為結果返回。.slice(start, end) 是 JavaScript 陣列的一個方法，用於從陣列中選擇一個子集，並返回一個新的陣列，包含從開始索引 (start) 到結束索引 (end) 之間的元素（但不包括結束索引的元素）。
+            // 它計算了當前頁面上的飯店資料的起始索引，即 start。這是通過將當前頁碼減一乘以每頁顯示的飯店數量來實現的。
+            const start = (this.currentPage - 1) * this.pageSize;
+            // 它計算了當前頁面上的飯店資料的結束索引，即 end。這是將起始索引 start 加上每頁顯示的飯店數量來實現的。
+            const end = start + this.pageSize;
+            // 它使用 slice() 方法從篩選後的飯店資料陣列 filteredHotels 中取出從 start 到 end 範圍的飯店資料，然後將這個範圍的資料作為結果返回。
+            // .slice(start, end) 時，它會返回一個新的陣列，其中包含原始陣列中從索引 start 開始，到索引 end 之前的元素（但不包括索引 end 的元素）。 例如，如果一個陣列為 [1, 2, 3, 4, 5]，我們使用 .slice(1, 4)，則會返回一個新的陣列 [2, 3, 4]，因為它包含了原始陣列中索引從 1 到 3 的元素（但不包括索引 4 的元素）。
+            return this.filteredHotels.slice(start, end);
         },
     },
     components: { Footer },
