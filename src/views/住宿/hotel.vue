@@ -112,7 +112,7 @@ export default {
                 } else if (price === "c") {
                     filtered = filtered.filter(item => item.Town === city && item.LowestPrice > 7000);
                 }
-            } else { // 如果未選擇 "區"，則返回所有臺南的飯店資料
+            } else { // 如果未選擇 "區"，則返回所有臺南的飯店資料。這裡的邏輯與 if 塊中的相似，只是不需要再檢查城市是否與 city 相符。
                 if (price === "a") {
                     filtered = filtered.filter(item => item.LowestPrice < 4000);
                 } else if (price === "b") {
