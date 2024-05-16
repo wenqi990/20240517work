@@ -21,7 +21,7 @@ import Footer from '../views/Footer.vue'
         <h4>美食分享</h4>
       </div>
       <div class="info-item">
-        <a href="hhttp://localhost:5173/Activity" aria-label="Infobox link">
+        <a href="http://localhost:5173/Activity" aria-label="Infobox link">
         <img src="https://havefunday.com/wp-content/uploads/2023/06/400X400-icon_景點-150x150.png" alt="活動推薦">
         </a>
         <h4>活動推薦</h4>
