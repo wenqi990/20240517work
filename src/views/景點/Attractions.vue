@@ -1082,7 +1082,8 @@ export default{
     height: 100dvh;
     display: flex;
     flex-wrap: wrap;
-    justify-content: left;
+    // justify-content: left;
+    justify-content: space-between;
     border: 1px solid black;
     margin-left: 1%;
     margin-top: 1%;
@@ -1107,6 +1108,7 @@ export default{
 
     .checkArea{
         margin-left: 2%;
+        margin-right: 1%;
     }
 }
 
